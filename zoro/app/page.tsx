@@ -789,7 +789,7 @@ const App = () => {
             {/* Logo 區塊 */}
             <div className="flex items-center gap-3">
               <img 
-                src="/imgs/kgif_logo.png" 
+                src="/zoro/imgs/kgif_logo.png" 
                 alt="KGIF Logo" 
                 className="h-12 w-auto object-contain scale-125 mr-2" 
                 onError={(e) => {
@@ -883,7 +883,7 @@ const App = () => {
               
               <div className="relative w-80 h-[28rem] bg-[#0b121e] rounded-[2rem] border-2 border-green-500/50 overflow-hidden shadow-2xl transition duration-500 group-hover:border-green-400 group-hover:scale-[1.02]">
                  <img 
-                    src="/imgs/zoro.jpg" 
+                    src="/zoro/imgs/zoro.jpg" 
                     alt="謝宗佑 個人照" 
                     className="w-full h-full object-contain transition duration-500"
                     loading="lazy"
@@ -913,7 +913,7 @@ const App = () => {
                 <div className="flex flex-col items-center">
                   <div className="bg-slate-50 p-1 rounded-lg">
                     <img 
-                      src="/imgs/M_502ysqhc_GW.png"
+                      src="/zoro/imgs/M_502ysqhc_GW.png"
                       alt="Line QR Code" 
                       className="w-20 h-20"
                     />
@@ -1056,7 +1056,7 @@ const App = () => {
               <div className="relative p-6 bg-white rounded-[2rem] shadow-inner border-2 border-slate-50 group">
                 <div className="absolute inset-0 bg-green-500/5 rounded-[2rem] scale-0 group-hover:scale-100 transition-transform"></div>
                 <img 
-                  src="/imgs/M_502ysqhc_GW.png"
+                  src="/zoro/imgs/M_502ysqhc_GW.png"
                   alt="LINE QR Code Large" 
                   className="w-48 h-48 md:w-64 md:h-64 relative z-10"
                 />
@@ -1067,7 +1067,7 @@ const App = () => {
               <div className="relative p-6 bg-white rounded-[2rem] shadow-inner border-2 border-slate-50 group">
                 <div className="absolute inset-0 bg-green-500/5 rounded-[2rem] scale-0 group-hover:scale-100 transition-transform"></div>
                 <img 
-                  src="/imgs/ig.jpg"
+                  src="/zoro/imgs/ig.jpg"
                   alt="LINE QR Code Large" 
                   className="w-48 h-48 md:w-64 md:h-64 relative z-10"
                 />
@@ -1084,7 +1084,7 @@ const App = () => {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 text-left">
             <div className="md:w-1/3 text-left">
               <div className="flex items-center gap-2 mb-6">
-                <img src="/imgs/kgif_logo.png" alt="KGIF Logo" className="h-8 w-auto grayscale opacity-70" />
+                <img src="/zoro/imgs/kgif_logo.png" alt="KGIF Logo" className="h-8 w-auto grayscale opacity-70" />
                 <h3 className="text-xl font-black italic">KGI <span className="text-green-600 text-left">ZORO</span></h3>
               </div>
               <p className="text-slate-600 font-bold mb-2 text-left">凱基期貨總公司 - 謝宗佑</p>
