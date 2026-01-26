@@ -728,7 +728,9 @@ const Icon = ({ name, className = "w-6 h-6" }: IconProps) => {
     Gamepad2: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="6" x2="10" y1="12" y2="12"></line><line x1="8" x2="8" y1="10" y2="14"></line><line x1="15" x2="15.01" y1="13" y2="13"></line><line x1="18" x2="18.01" y1="11" y2="11"></line><rect width="20" height="12" x="2" y="6" rx="2"></rect></svg>,
     Dumbbell: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6.5 6.5h11"></path><path d="M6.5 17.5h11"></path><path d="m3 21 18-18"></path><path d="m3 3 18 18"></path></svg>
   };
-  return icons[name] || null;
+  // return icons[name] || null;
+  // 告訴 TypeScript name 一定是 icons 的其中一個 Key
+  return icons[name as keyof typeof icons] || null;
 };
 
 const App = () => {
@@ -791,7 +793,8 @@ const App = () => {
                 alt="KGIF Logo" 
                 className="h-12 w-auto object-contain scale-125 mr-2" 
                 onError={(e) => {
-                  e.target.style.display = 'none';
+                  const target = e.target as HTMLElement;
+                  target.style.display = 'none';
                 }}
               />
               <div className="flex flex-col">
@@ -885,7 +888,9 @@ const App = () => {
                     className="w-full h-full object-contain transition duration-500"
                     loading="lazy"
                     onError={(e) => {
-                      e.target.src = "https://placehold.jp/48/16a34a/ffffff/400x600.png?text=%E8%AC%9D%E5%AE%97%E4%BD%91%0A(PHOTO)";
+                      // e.target.src = "https://placehold.jp/48/16a34a/ffffff/400x600.png?text=%E8%AC%9D%E5%AE%97%E4%BD%91%0A(PHOTO)";
+                      const target = e.target as HTMLImageElement; // 強制轉型
+                      target.src = '/fallback-image.png';
                     }}
                  />
                  
@@ -919,7 +924,7 @@ const App = () => {
               </div> */}
 
               <div className="absolute -bottom-6 -right-6 bg-green-600 p-4 rounded-lg shadow-xl transform rotate-3 z-20">
-                 <p className="font-black italic text-white text-center">"既然要戰，就要贏！"</p>
+                 <p className="font-black italic text-white text-center">{"既然要戰，就要贏！"}</p>
               </div>
             </div>
           </div>
