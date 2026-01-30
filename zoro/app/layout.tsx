@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FloatingActionButton from "./components/FloatingActionButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-900`}
       >
         {/* 在這裡放 Navbar，全站都會出現且底色統一 */}
-        <Navbar /> 
+        <Navbar />
+        <FloatingActionButton />
         <main>
           {children}
         </main>

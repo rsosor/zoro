@@ -1,93 +1,51 @@
-// import Image from "next/image";
-
-// export default function Home() {
-//   return (
-//     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-//       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-//         <Image
-//           className="dark:invert"
-//           src="/next.svg"
-//           alt="Next.js logo"
-//           width={100}
-//           height={20}
-//           priority
-//         />
-//         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-//           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-//             To get started, edit the page.tsx file.
-//           </h1>
-//           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-//             Looking for a starting point or more instructions? Head over to{" "}
-//             <a
-//               href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//               className="font-medium text-zinc-950 dark:text-zinc-50"
-//             >
-//               Templates
-//             </a>{" "}
-//             or the{" "}
-//             <a
-//               href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//               className="font-medium text-zinc-950 dark:text-zinc-50"
-//             >
-//               Learning
-//             </a>{" "}
-//             center.
-//           </p>
-//         </div>
-//         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-//           <a
-//             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-//             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <Image
-//               className="dark:invert"
-//               src="/vercel.svg"
-//               alt="Vercel logomark"
-//               width={16}
-//               height={16}
-//             />
-//             Deploy Now
-//           </a>
-//           <a
-//             className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-//             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Documentation
-//           </a>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// }
-
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Icon from './components/Icon'; // 引入剛才抽出去的組件
+import React, { useState, useEffect } from "react";
+import Image from 'next/image';
+import Icon from "./components/Icon"; // 引入剛才抽出去的組件
 
 // 完全自定義的純代碼 SVG 圖組件 (不依賴外部圖片或網址)
 const SVGIcon = ({ name, className = "" }) => {
   switch (name) {
     case "ChevronRight":
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={className}
+        >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       );
     case "RotateCcw":
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-          <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={className}
+        >
+          <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38" />
         </svg>
       );
     case "Info":
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={className}
+        >
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="16" x2="12" y2="12"></line>
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -108,18 +66,19 @@ const App = () => {
     const handleScroll = () => {
       setShowFloatingQR(window.scrollY > 300);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // 外部連結設定
   const socialLinks = {
-    openAccountUrl: "https://onlineopen.kgifutures.com.tw/openaccount/client/#/oa/createCase?oa_branch=000&sales_person_id=80248&sourceType=F",
+    openAccountUrl:
+      "https://onlineopen.kgifutures.com.tw/openaccount/client/#/oa/createCase?oa_branch=000&sales_person_id=80248&sourceType=F",
     openLineOAUrl: "https://lin.ee/i7koSZH",
     openIGUrl: "https://www.instagram.com/trader.0222",
     openThreadsUrl: "https://www.threads.com/@trader.0222",
     github: "https://github.com/rsosor",
-    leetcode: "https://leetcode.com/u/rsosor/"
+    leetcode: "https://leetcode.com/u/rsosor/",
   };
 
   const zoroQuotes = [
@@ -134,157 +93,217 @@ const App = () => {
     "「如果我就死在這裡，那說明我不過是這種程度的男人。——《海賊王》羅羅亞索隆」",
     "「受盡苦難而不厭，此乃修羅之道。——《海賊王》羅羅亞索隆」",
   ];
-  
+
   const advantages = [
     {
       icon: <Icon name="Zap" className="w-8 h-8 text-green-500" />,
       title: "三刀流般的執行力",
-      description: "「傷痕是男兒的勳章」。在震盪的市場中，我以最剛猛的自律與速度，為您斬開獲利的道路。"
+      description:
+        "「傷痕是男兒的勳章」。在震盪的市場中，我以最剛猛的自律與速度，為您斬開獲利的道路。",
     },
     {
       icon: <Icon name="Dumbbell" className="w-8 h-8 text-green-500" />,
       title: "健力者的嚴格自律",
-      description: "交易如健身，沒有捷徑。數年盯盤資歷，靠的是極致的自律，我深信「受盡苦難而不厭」，才是通往極致的唯一路徑。"
+      description:
+        "交易如健身，沒有捷徑。數年盯盤資歷，靠的是極致的自律，我深信「受盡苦難而不厭」，才是通往極致的唯一路徑。",
     },
     {
       icon: <Icon name="Cpu" className="w-8 h-8 text-green-500" />,
       title: "最強大的名刀系統",
-      description: "從看盤軟體到 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。"
-    }
+      description:
+        "從看盤軟體到 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。",
+    },
   ];
 
   const tradingSystems = [
-    { name: "凱基看盤下單系統（敬請期待）", detail: "直覺流暢，適合全方位投資人" },
-    { name: "MultiCharts 策略對接（敬請期待）", detail: "專業回測與自動執行方案" },
-    { name: "進階 API 串接服務（敬請期待）", detail: "專為程式交易者打造，極低延遲" },
+    {
+      name: "凱基看盤下單系統（敬請期待）",
+      detail: "直覺流暢，適合全方位投資人",
+    },
+    {
+      name: "MultiCharts 策略對接（敬請期待）",
+      detail: "專業回測與自動執行方案",
+    },
+    {
+      name: "進階 API 串接服務（敬請期待）",
+      detail: "專為程式交易者打造，極低延遲",
+    },
     { name: "Day Trade 當沖實戰心得", detail: "分享數年盯盤實戰心法" },
-    { name: "健力日誌", detail: "從運動認識自己的身體" }
+    { name: "健力日誌", detail: "從運動認識自己的身體" },
   ];
 
   const skillBadges = [
-    "MultiCharts", "Python API", "React", "Tailwind", "Powerlifting (Big3 450kg+)", "Trading Strategy"
+    "MultiCharts",
+    "Python API",
+    "React",
+    "Tailwind",
+    "Powerlifting (Big3 450kg+)",
+    "Trading Strategy",
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       {/* 懸浮右側 LINE QR Code */}
-      <div className={`fixed right-0 top-1/2 -translate-y-1/2 z-[100] transition-all duration-500 transform ${showFloatingQR ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div
+        className={`fixed right-0 top-1/2 -translate-y-1/2 z-[100] transition-all duration-500 transform ${showFloatingQR ? "translate-x-0" : "translate-x-full"}`}
+      >
         <div className="group relative flex items-center">
           {/* 隱藏的展開區域 */}
           <div className="bg-white p-4 rounded-l-3xl shadow-2xl border-2 border-r-0 border-green-500 translate-x-full group-hover:translate-x-0 transition-transform duration-300">
-             <div className="flex flex-col items-center gap-2">
-                <img src="/zoro/imgs/M_502ysqhc_GW.png" alt="Line QR" className="w-32 h-32" />
-                <span className="text-[10px] font-black text-slate-800">掃描加 LINE</span>
-                <span className="bg-red-500 text-white text-[8px] px-2 py-0.5 rounded-full animate-pulse">優惠諮詢</span>
-             </div>
+            <div className="flex flex-col items-center gap-2">
+              <img
+                src="/zoro/imgs/M_502ysqhc_GW.png"
+                alt="Line QR"
+                className="w-32 h-32"
+              />
+              <span className="text-[10px] font-black text-slate-800">
+                掃描加 LINE
+              </span>
+              <span className="bg-red-500 text-white text-[8px] px-2 py-0.5 rounded-full animate-pulse">
+                優惠諮詢
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="min-h-screen bg-[#0b121e] font-sans">
-      {/* Hero 區塊 */}
-      <section id="about" className="relative bg-[#0b121e] text-white py-24 overflow-hidden text-left">
-        {/* 背景環境裝飾 (Radial Gradient) */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_50%,#16a34a_0%,transparent_50%)]"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-12">
-          {/* 左側文字內容 */}
-          <div className="flex-1 text-left lg:pr-12">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-green-500/20 text-green-400 text-sm font-bold border border-green-500/30 mb-6 tracking-widest uppercase">
-               KGI Futures / 凱基期貨總公司
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight text-left">
-              受盡苦難而不厭<br />
-              <span className="text-green-500 italic text-left">此乃修羅之道</span>
-            </h1>
-            <p className="text-xl text-slate-400 mb-8 max-w-xl font-light leading-relaxed text-left">
-              從學生遊玩電競遊戲比賽的指尖反應，到健力訓練的鋼鐵意志。<br />
-              在期貨戰場盯盤數年，我只相信：<br />
-              <span className="text-green-400 font-medium">唯有極致的自律，才能帶來純粹的盈利。</span>
-            </p>
-            
-            <div className="flex flex-wrap gap-4 text-left">
-              <a 
-                href={socialLinks.openAccountUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="animate-bounce bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-md font-black text-xl shadow-[0_10px_30px_rgba(22,163,74,0.4)] transition cursor-pointer flex items-center gap-3 no-underline"
-              >
-                立即線上開戶 <SVGIcon name="ChevronRight" className="w-6 h-6" />
-              </a>
-              <a href="#contact" className="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-10 py-4 rounded-md font-bold text-xl backdrop-blur-sm transition cursor-pointer flex items-center justify-center">
-                手續費優惠洽詢
-              </a>
-            </div>
+        {/* Hero 區塊 */}
+        <section
+          id="about"
+          className="relative bg-[#0b121e] text-white py-24 overflow-hidden text-left"
+        >
+          {/* 背景環境裝飾 (Radial Gradient) */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_50%,#16a34a_0%,transparent_50%)]"></div>
           </div>
 
-          {/* 右側個人照區塊 - 具備 3D 翻轉功能 */}
-          <div className="md:w-2/5 flex justify-center relative perspective-1000">
-            <div 
-              className={`relative w-80 h-[28rem] cursor-pointer transition-all duration-700 preserve-3d group ${isFlipped ? 'rotate-y-180' : ''}`}
-              onClick={() => setIsFlipped(!isFlipped)}
-            >
-              {/* 提示點擊的小標籤 (只在未翻轉時顯示) */}
-              {!isFlipped && (
-                <div className="absolute -top-4 -left-4 z-30 bg-white text-green-600 px-3 py-1 rounded-full text-xs font-black shadow-lg animate-bounce flex items-center gap-1 border-2 border-green-500">
-                  <SVGIcon name="RotateCcw" className="w-3 h-3" />點擊了解 CLICK TO FLIP
-                </div>
-              )}
+          <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            {/* 左側文字內容 */}
+            <div className="flex-1 text-left lg:pr-12">
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-green-500/20 text-green-400 text-sm font-bold border border-green-500/30 mb-6 tracking-widest uppercase">
+                KGI Futures / 凱基期貨總公司
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight text-left">
+                受盡苦難而不厭
+                <br />
+                <span className="text-green-500 italic text-left">
+                  此乃修羅之道
+                </span>
+              </h1>
+              <p className="text-xl text-slate-400 mb-8 max-w-xl font-light leading-relaxed text-left">
+                從學生遊玩電競遊戲比賽的指尖反應，到健力訓練的鋼鐵意志。
+                <br />
+                在期貨戰場盯盤數年，我只相信：
+                <br />
+                <span className="text-green-400 font-medium">
+                  唯有極致的自律，才能帶來純粹的盈利。
+                </span>
+              </p>
 
-              {/* 正面: 照片面 */}
-              <div className="absolute inset-0 backface-hidden">
-                <div className="absolute -inset-4 bg-green-500/20 rounded-[2rem] blur-2xl group-hover:bg-green-500/30 transition duration-500"></div>
-                <div className="relative h-full bg-[#0b121e] rounded-[2rem] border-2 border-green-500/50 overflow-hidden shadow-2xl transition duration-500 group-hover:border-green-400 group-hover:scale-[1.02]">
-                   <img 
-                      src="/zoro/imgs/zoro.jpg" 
-                      alt="謝宗佑 個人照" 
+              <div className="flex flex-wrap gap-4 text-left">
+                <a
+                  href={socialLinks.openAccountUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="animate-bounce bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-md font-black text-xl shadow-[0_10px_30px_rgba(22,163,74,0.4)] transition cursor-pointer flex items-center gap-3 no-underline"
+                >
+                  立即線上開戶{" "}
+                  <SVGIcon name="ChevronRight" className="w-6 h-6" />
+                </a>
+                <a
+                  href="#contact"
+                  className="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-10 py-4 rounded-md font-bold text-xl backdrop-blur-sm transition cursor-pointer flex items-center justify-center"
+                >
+                  手續費優惠洽詢
+                </a>
+              </div>
+            </div>
+
+            {/* 右側個人照區塊 - 具備 3D 翻轉功能 */}
+            <div className="md:w-2/5 flex justify-center relative perspective-1000">
+              <div
+                className={`relative w-80 h-[28rem] cursor-pointer transition-all duration-700 preserve-3d group ${isFlipped ? "rotate-y-180" : ""}`}
+                onClick={() => setIsFlipped(!isFlipped)}
+              >
+                {/* 提示點擊的小標籤 (只在未翻轉時顯示) */}
+                {!isFlipped && (
+                  <div className="absolute -top-4 -left-4 z-30 bg-white text-green-600 px-3 py-1 rounded-full text-xs font-black shadow-lg animate-bounce flex items-center gap-1 border-2 border-green-500">
+                    <SVGIcon name="RotateCcw" className="w-3 h-3" />
+                    點擊了解 CLICK TO FLIP
+                  </div>
+                )}
+
+                {/* 正面: 照片面 */}
+                <div className="absolute inset-0 backface-hidden">
+                  <div className="absolute -inset-4 bg-green-500/20 rounded-[2rem] blur-2xl group-hover:bg-green-500/30 transition duration-500"></div>
+                  <div className="relative h-full bg-[#0b121e] rounded-[2rem] border-2 border-green-500/50 overflow-hidden shadow-2xl transition duration-500 group-hover:border-green-400 group-hover:scale-[1.02]">
+                    <img
+                      src="/zoro/imgs/zoro.jpg"
+                      alt="謝宗佑 個人照"
                       className="w-full h-full object-contain transition duration-500"
                       loading="lazy"
                       onError={(e) => {
-                        // 當圖片路徑不正確時的後備方案
-                        e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';
+                        e.currentTarget.style.display = 'none';
                       }}
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b121e] via-transparent to-transparent opacity-60 pointer-events-none"></div>
-                   <div className="absolute bottom-0 left-0 right-0 p-8 text-center bg-gradient-to-t from-[#0b121e] to-transparent">
-                      <span className="text-green-500 block mb-1 font-mono text-xs tracking-[0.3em]">ZORO STYLE</span>
-                      <h2 className="text-3xl font-black tracking-widest mb-2 text-white text-center">謝宗佑</h2>
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b121e] via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-8 text-center bg-gradient-to-t from-[#0b121e] to-transparent">
+                      <span className="text-green-500 block mb-1 font-mono text-xs tracking-[0.3em]">
+                        ZORO STYLE
+                      </span>
+                      <h2 className="text-3xl font-black tracking-widest mb-2 text-white text-center">
+                        謝宗佑
+                      </h2>
                       <div className="h-1 w-10 bg-green-500 mx-auto mb-4"></div>
-                      <p className="text-slate-300 text-sm font-bold text-center">數年盯盤經驗 ∪ 程式開發經驗</p>
-                      <p className="text-slate-500 text-[10px] mt-1 uppercase tracking-tighter text-center text-center">Day Trader / Powerlifter</p>
-                   </div>        
+                      <p className="text-slate-300 text-sm font-bold text-center">
+                        數年盯盤經驗 ∪ 程式開發經驗
+                      </p>
+                      <p className="text-slate-500 text-[10px] mt-1 uppercase tracking-tighter text-center text-center">
+                        Day Trader / Powerlifter
+                      </p>
+                    </div>
+                  </div>
+                  {/* 裝飾語句標籤 */}
+                  <div className="absolute -bottom-6 -right-6 bg-green-600 p-4 rounded-lg shadow-xl transform rotate-3 z-20 group-hover:rotate-0 transition-transform">
+                    <p className="font-black italic text-white text-center">
+                      {"既然要戰，就要贏！"}
+                    </p>
+                  </div>
                 </div>
-                {/* 裝飾語句標籤 */}
-                <div className="absolute -bottom-6 -right-6 bg-green-600 p-4 rounded-lg shadow-xl transform rotate-3 z-20 group-hover:rotate-0 transition-transform">
-                   <p className="font-black italic text-white text-center">{"既然要戰，就要贏！"}</p>
-                </div>
-              </div>
-              
-              {/* 反面: 詳細資訊面 (技術棧與經驗版面) */}
-              <div className="absolute inset-0 backface-hidden rotate-y-180">
-                <div className="absolute -top-4 -left-4 z-30 bg-white text-green-600 px-3 py-1 rounded-full text-xs font-black shadow-lg animate-bounce flex items-center gap-1 border-2 border-green-500">
-                  <SVGIcon name="RotateCcw" className="w-3 h-3" />點擊翻閱 CLICK TO FLIP
-                </div>
-                <div className="h-full bg-slate-900 rounded-[2rem] border-2 border-green-400 p-6 flex flex-col shadow-2xl relative overflow-hidden">
-                   <div className="absolute -top-10 -right-10 opacity-5">
-                     <SVGIcon name="Terminal" className="w-64 h-64 text-white" />
-                   </div>
-                   
-                   <div className="relative z-10 h-full flex flex-col">
+
+                {/* 反面: 詳細資訊面 (技術棧與經驗版面) */}
+                <div className="absolute inset-0 backface-hidden rotate-y-180">
+                  <div className="absolute -top-4 -left-4 z-30 bg-white text-green-600 px-3 py-1 rounded-full text-xs font-black shadow-lg animate-bounce flex items-center gap-1 border-2 border-green-500">
+                    <SVGIcon name="RotateCcw" className="w-3 h-3" />
+                    點擊翻閱 CLICK TO FLIP
+                  </div>
+                  <div className="h-full bg-slate-900 rounded-[2rem] border-2 border-green-400 p-6 flex flex-col shadow-2xl relative overflow-hidden">
+                    <div className="absolute -top-10 -right-10 opacity-5">
+                      <SVGIcon
+                        name="Terminal"
+                        className="w-64 h-64 text-white"
+                      />
+                    </div>
+
+                    <div className="relative z-10 h-full flex flex-col">
                       <div className="text-center mb-6">
                         <div className="inline-flex p-2 bg-green-500/10 rounded-lg mb-2">
-                           <SVGIcon name="Code" className="w-6 h-6 text-green-400" />
+                          <SVGIcon
+                            name="Code"
+                            className="w-6 h-6 text-green-400"
+                          />
                         </div>
-                        <h3 className="text-xl font-black text-white tracking-widest uppercase text-center">About Me</h3>
+                        <h3 className="text-xl font-black text-white tracking-widest uppercase text-center">
+                          About Me
+                        </h3>
                         <div className="h-0.5 w-8 bg-green-500 mx-auto mt-2"></div>
                       </div>
 
                       <div className="space-y-5 flex-1 overflow-y-auto pr-1 custom-scrollbar">
                         {/* GitHub & LeetCode 連結區塊 */}
                         <div className="grid grid-cols-2 gap-3">
-                          <a 
+                          <a
                             href={socialLinks.github}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -293,15 +312,32 @@ const App = () => {
                           >
                             <div className="flex items-center justify-between mb-1">
                               <div className="flex items-center gap-2">
-                                <SVGIcon name="Github" className="w-4 h-4 text-slate-400 group-hover/item:text-white" />
-                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter group-hover/item:text-slate-300">Github</span>
+                                <img
+                                  // src="/zoro/imgs/icons/icons8-facebook (1).svg"
+                                  // src="/zoro/imgs/icons/icons8-github-48.png"
+                                  src="/zoro/imgs/icons/icons8-github-50.png"
+                                  className="w-4 h-4 grayscale group-hover/item:grayscale-0"
+                                  alt="LeetCode"
+                                />
+                                <SVGIcon
+                                  name="Github"
+                                  className="w-4 h-4 text-slate-400 group-hover/item:text-white"
+                                />
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter group-hover/item:text-slate-300">
+                                  Github
+                                </span>
                               </div>
-                              <SVGIcon name="ExternalLink" className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                              <SVGIcon
+                                name="ExternalLink"
+                                className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity"
+                              />
                             </div>
-                            <p className="text-xs font-mono text-green-400">開發者開源平台</p>
+                            <p className="text-xs font-mono text-green-400">
+                              開發者開源平台
+                            </p>
                           </a>
 
-                          <a 
+                          <a
                             href={socialLinks.leetcode}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -310,79 +346,107 @@ const App = () => {
                           >
                             <div className="flex items-center justify-between mb-1">
                               <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 rounded-sm bg-orange-500/20 flex items-center justify-center">
+                                {/* <div className="w-4 h-4 rounded-sm bg-orange-500/20 flex items-center justify-center">
                                   <span className="text-[8px] text-orange-400 font-bold">LC</span>
-                                </div>
-                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter group-hover/item:text-slate-300">LeetCode</span>
+                                </div> */}
+                                <img
+                                  src="/zoro/imgs/icons/icons8-leetcode-24.png"
+                                  className="w-4 h-4 grayscale group-hover/item:grayscale-0"
+                                  alt="LeetCode"
+                                />
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter group-hover/item:text-slate-300">
+                                  LeetCode
+                                </span>
                               </div>
-                              <SVGIcon name="ExternalLink" className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                              <SVGIcon
+                                name="ExternalLink"
+                                className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity"
+                              />
                             </div>
-                            <p className="text-xs font-mono text-orange-400">開發者刷題平台</p>
+                            <p className="text-xs font-mono text-orange-400">
+                              開發者刷題平台
+                            </p>
                           </a>
                         </div>
 
                         {/* 程式經驗 */}
                         <div className="space-y-2">
-                          <h4 className="text-[10px] font-black text-green-500 uppercase tracking-[0.2em] px-1">開發（Development）</h4>
+                          <h4 className="text-[10px] font-black text-green-500 uppercase tracking-[0.2em] px-1">
+                            開發（Development）
+                          </h4>
                           <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-left">
-                             <p className="text-xs text-slate-300 leading-relaxed">
-                               助您在程式交易之中一臂之力。
-                             </p>
-                             <p className="text-xs text-slate-300 leading-relaxed">
-                               {"\u2713"} 系統前後端開發經驗
-                             </p>
-                             <p className="text-xs text-slate-300 leading-relaxed">
-                               {"\u2713"} 串接報價、下單 API 經驗
-                             </p>
-                             <p className="text-xs text-slate-300 leading-relaxed">
-                               {"\u2713"} 資料結構、演算法刷題訓練
-                             </p>
-                             <p className="text-xs text-slate-300 leading-relaxed">
-                               {"\u2713"} 操作系統、系統設計思維
-                             </p>
-                             <div className="mt-3 flex flex-wrap gap-2">
-                               <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">API Design</span>
-                               <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">SQL</span>
-                               <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">C++/C/Java/C#/JavaScript</span>
-                               <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">Data Structure</span>
-                               <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">Algorithm</span>
-                             </div>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                              助您在程式交易之中一臂之力。
+                            </p>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                              {"\u2713"} 系統前後端開發經驗
+                            </p>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                              {"\u2713"} 串接報價、下單 API 經驗
+                            </p>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                              {"\u2713"} 資料結構、演算法刷題訓練
+                            </p>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                              {"\u2713"} 操作系統、系統設計思維
+                            </p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">
+                                API Design
+                              </span>
+                              <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">
+                                SQL
+                              </span>
+                              <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">
+                                C++/C/Java/C#/JavaScript
+                              </span>
+                              <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">
+                                Data Structure
+                              </span>
+                              <span className="text-[9px] border border-white/10 px-2 py-0.5 rounded-full text-slate-500">
+                                Algorithm
+                              </span>
+                            </div>
                           </div>
                         </div>
 
                         {/* 交易經驗 */}
                         <div className="space-y-2">
-                          <h4 className="text-[10px] font-black text-green-500 uppercase tracking-[0.2em] px-1">交易（Trade）</h4>
+                          <h4 className="text-[10px] font-black text-green-500 uppercase tracking-[0.2em] px-1">
+                            交易（Trade）
+                          </h4>
                           <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-left">
-                             <p className="text-xs text-slate-300 leading-relaxed">
-                               多年的盯盤經驗，親身經歷過多/空頭當下氛圍、交易走勢、分時明細，懂得細水長流、遠離黑天鵝才是最終贏家。
-                             </p>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                              多年的盯盤經驗，親身經歷過多/空頭當下氛圍、交易走勢、分時明細，懂得細水長流、遠離黑天鵝才是最終贏家。
+                            </p>
                           </div>
                         </div>
 
                         {/* 名片 */}
                         <div className="space-y-2">
-                          <h4 className="text-[10px] font-black text-green-500 uppercase tracking-[0.2em] px-1">名片（business card）</h4>
-                            <div 
-                              className="group relative overflow-hidden rounded-xl border border-white/10"
-                            >
-                              <img 
-                                src="/zoro/imgs/business_card.jpg"
-                                alt="Business Card"
-                                className="w-full h-auto transition-transform duration-300"
-                              />
-                            </div>
+                          <h4 className="text-[10px] font-black text-green-500 uppercase tracking-[0.2em] px-1">
+                            名片（business card）
+                          </h4>
+                          <div className="group relative overflow-hidden rounded-xl border border-white/10">
+                            <img
+                              src="/zoro/imgs/business_card.jpg"
+                              alt="Business Card"
+                              className="w-full h-auto transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                       </div>
-                   </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* 3D 動畫必要的 CSS */}
-        <style dangerouslySetInnerHTML={{ __html: `
+          {/* 3D 動畫必要的 CSS */}
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
           .perspective-1000 {
             perspective: 1000px;
           }
@@ -396,43 +460,62 @@ const App = () => {
           .rotate-y-180 {
             transform: rotateY(180deg);
           }
-        `}} />
-      </section>
-    </div>
+        `,
+            }}
+          />
+        </section>
+      </div>
 
       {/* 動態語錄跑馬燈 */}
       <div className="bg-green-600 py-4 overflow-hidden whitespace-nowrap">
         <div className="flex animate-[marquee_30s_linear_infinite] gap-12">
-           {[...zoroQuotes, ...zoroQuotes].map((quote, i) => (
-             <span key={i} className="text-white font-black italic text-lg opacity-90 uppercase">
-               {quote} <span className="mx-8 text-green-300">•</span>
-             </span>
-           ))}
+          {[...zoroQuotes, ...zoroQuotes].map((quote, i) => (
+            <span
+              key={i}
+              className="text-white font-black italic text-lg opacity-90 uppercase"
+            >
+              {quote} <span className="mx-8 text-green-300">•</span>
+            </span>
+          ))}
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-      `}} />
-
-      
+      `,
+        }}
+      />
 
       {/* 核心優勢 */}
-      <section className="py-24 max-w-7xl mx-auto px-4 text-left">
+      <section
+        id="numberone"
+        className="py-24 max-w-7xl mx-auto px-4 text-left"
+      >
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4">世界第一的野心</h2>
-          <p className="text-slate-500 font-light">「我要成為世界第一的期貨營業員，讓我的名聲響徹雲霄！」</p>
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4">
+            世界第一的野心
+          </h2>
+          <p className="text-slate-500 font-light">
+            「我要成為世界第一的期貨營業員，讓我的名聲響徹雲霄！」
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-12 text-left">
           {advantages.map((item, idx) => (
-            <div key={idx} className="group relative bg-white p-10 rounded-2xl shadow-sm border-b-4 border-transparent hover:border-green-500 transition-all duration-300 hover:shadow-2xl text-left">
+            <div
+              key={idx}
+              className="group relative bg-white p-10 rounded-2xl shadow-sm border-b-4 border-transparent hover:border-green-500 transition-all duration-300 hover:shadow-2xl text-left"
+            >
               <div className="mb-6 bg-slate-50 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
-              <h3 className="text-2xl font-black mb-4 text-left">{item.title}</h3>
+              <h3 className="text-2xl font-black mb-4 text-left">
+                {item.title}
+              </h3>
               <p className="text-slate-500 leading-relaxed text-lg text-left">
                 {item.description}
               </p>
@@ -446,35 +529,57 @@ const App = () => {
         <div className="max-w-7xl mx-auto px-4 text-left">
           <div className="flex flex-col md:flex-row gap-16 items-center text-left">
             <div className="md:w-1/2 text-left">
-              <h2 className="text-4xl font-black mb-4 italic text-left uppercase">Systems & Tools</h2>
-              <p className="text-green-500 font-bold mb-8 tracking-widest text-left">「災難總是接踵而至，這正是世間的常態。」<br/><br/>工欲善其事，必先利其器</p>
-              
+              <h2 className="text-4xl font-black mb-4 italic text-left uppercase">
+                Systems & Tools
+              </h2>
+              <p className="text-green-500 font-bold mb-8 tracking-widest text-left">
+                「災難總是接踵而至，這正是世間的常態。」
+                <br />
+                <br />
+                工欲善其事，必先利其器
+              </p>
+
               <div className="space-y-6 text-left">
                 {tradingSystems.map((sys, idx) => (
-                  <div key={idx} className="flex group cursor-pointer text-left"
+                  <div
+                    key={idx}
+                    className="flex group cursor-pointer text-left"
                     // onClick={() => window.open(socialLinks.openAccountUrl, '_blank')}
                   >
-                    <div className="mr-6 text-2xl font-black text-slate-700 group-hover:text-green-500 transition-colors">0{idx+1}</div>
+                    <div className="mr-6 text-2xl font-black text-slate-700 group-hover:text-green-500 transition-colors">
+                      0{idx + 1}
+                    </div>
                     <div className="border-b border-slate-800 pb-4 w-full text-left">
-                      <h4 className="text-xl font-bold mb-1 group-hover:text-green-400 transition-colors text-left">{sys.name}</h4>
-                      <p className="text-slate-500 text-sm text-left">{sys.detail}</p>
+                      <h4 className="text-xl font-bold mb-1 group-hover:text-green-400 transition-colors text-left">
+                        {sys.name}
+                      </h4>
+                      <p className="text-slate-500 text-sm text-left">
+                        {sys.detail}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            
+
             <div className="md:w-1/2 grid grid-cols-2 gap-6 w-full text-left">
-               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
-                  <Icon name="BarChart3" className="text-green-500 mb-4 w-8 h-8" />
-                  <h4 className="font-black text-xl text-left">MultiCharts</h4>
-                  <p className="text-slate-400 text-sm mt-2 font-light text-left">支援策略回測與自動下單對接</p>
-               </div>
-               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
-                  <Icon name="Cpu" className="text-green-500 mb-4 w-8 h-8" />
-                  <h4 className="font-black text-xl text-left">API Trading</h4>
-                  <p className="text-slate-400 text-sm mt-2 font-light text-left">極致低延遲，專屬程式交易方案</p>
-               </div>
+              <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
+                <Icon
+                  name="BarChart3"
+                  className="text-green-500 mb-4 w-8 h-8"
+                />
+                <h4 className="font-black text-xl text-left">MultiCharts</h4>
+                <p className="text-slate-400 text-sm mt-2 font-light text-left">
+                  支援策略回測與自動下單對接
+                </p>
+              </div>
+              <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
+                <Icon name="Cpu" className="text-green-500 mb-4 w-8 h-8" />
+                <h4 className="font-black text-xl text-left">API Trading</h4>
+                <p className="text-slate-400 text-sm mt-2 font-light text-left">
+                  極致低延遲，專屬程式交易方案
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -512,9 +617,15 @@ const App = () => {
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl flex flex-col md:flex-row items-center gap-12 border border-slate-200">
             <div className="md:w-3/5 text-left">
-              <h2 className="text-4xl font-black text-slate-800 mb-6">即刻加入</h2>
+              <h2 className="text-4xl font-black text-slate-800 mb-6">
+                即刻加入
+              </h2>
               <p className="text-slate-600 text-lg mb-8 font-light leading-relaxed">
-                想了解更多關於 <span className="font-bold">凱基期貨手續費優惠</span>、<span className="font-bold">程式交易開發</span> 或是 <span className="font-bold">實戰心法</span> 嗎？<br/>
+                想了解更多關於{" "}
+                <span className="font-bold">凱基期貨手續費優惠</span>、
+                <span className="font-bold">程式交易開發</span> 或是{" "}
+                <span className="font-bold">實戰心法</span> 嗎？
+                <br />
                 掃描右側 QR Code 我會親自協助您。
               </p>
               {/* <h2 className="text-4xl font-black text-slate-900 mb-6">「路要自己走」</h2>
@@ -526,24 +637,28 @@ const App = () => {
             <div className="md:w-2/5 flex flex-col items-center">
               <div className="relative p-6 bg-white rounded-[2rem] shadow-inner border-2 border-slate-50 group">
                 <div className="absolute inset-0 bg-green-500/5 rounded-[2rem] scale-0 group-hover:scale-100 transition-transform"></div>
-                <img 
+                <img
                   src="/zoro/imgs/M_502ysqhc_GW.png"
-                  alt="LINE QR Code Large" 
+                  alt="LINE QR Code Large"
                   className="w-48 h-48 md:w-64 md:h-64 relative z-10"
                 />
               </div>
-              <p className="mt-6 text-slate-400 font-bold text-xs tracking-[0.3em] uppercase">Scan for Support</p>
+              <p className="mt-6 text-slate-400 font-bold text-xs tracking-[0.3em] uppercase">
+                Scan for Support
+              </p>
             </div>
-                        <div className="md:w-2/5 flex flex-col items-center">
+            <div className="md:w-2/5 flex flex-col items-center">
               <div className="relative p-6 bg-white rounded-[2rem] shadow-inner border-2 border-slate-50 group">
                 <div className="absolute inset-0 bg-green-500/5 rounded-[2rem] scale-0 group-hover:scale-100 transition-transform"></div>
-                <img 
+                <img
                   src="/zoro/imgs/ig.jpg"
-                  alt="LINE QR Code Large" 
+                  alt="LINE QR Code Large"
                   className="w-48 h-48 md:w-64 md:h-64 relative z-10"
                 />
               </div>
-              <p className="mt-6 text-slate-400 font-bold text-xs tracking-[0.3em] uppercase">Scan for Support</p>
+              <p className="mt-6 text-slate-400 font-bold text-xs tracking-[0.3em] uppercase">
+                Scan for Support
+              </p>
             </div>
           </div>
         </div>
