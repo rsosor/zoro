@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Icon from "./Icon"; // 確保路徑與你的 Navbar 相同
+// import Icon from "./Icon"; // 確保路徑與你的 Navbar 相同
+import { MapPin, Phone, ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
   const MAP_EMBED_URL =
@@ -66,10 +67,10 @@ export default function Footer() {
           <div className="md:w-2/3 text-left">
             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-left">
               {/* <h4 className="text-slate-800 font-black text-sm mb-4 uppercase tracking-widest flex items-center gap-2 text-left">
-                    <Icon name="ShieldCheck" className="text-red-500 w-4 h-4" /> 期貨交易風險警語
+                    <ShieldCheck className="text-red-500 w-4 h-4" /> 期貨交易風險警語
                   </h4> */}
               <h4 className="text-red-500 font-black text-sm mb-4 tracking-widest flex items-center gap-2">
-                <Icon name="ShieldCheck" className="w-5 h-5" /> 警語：交易者之戒
+                <ShieldCheck className="w-5 h-5" /> 警語：交易者之戒
               </h4>
               <div className="text-[11px] text-slate-400 leading-relaxed space-y-2 text-left">
                 <p className="text-left">

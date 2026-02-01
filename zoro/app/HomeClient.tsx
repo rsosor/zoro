@@ -1,74 +1,23 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from 'next/image';
-import Icon from "./components/Icon"; // 引入剛才抽出去的組件
-
-// 完全自定義的純代碼 SVG 圖組件 (不依賴外部圖片或網址)
-const SVGIcon = ({ name, className = "" }) => {
-  switch (name) {
-    case "ChevronRight":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={className}
-        >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      );
-    case "RotateCcw":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={className}
-        >
-          <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38" />
-        </svg>
-      );
-    case "Info":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={className}
-        >
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="16" x2="12" y2="12"></line>
-          <line x1="12" y1="8" x2="12.01" y2="8"></line>
-        </svg>
-      );
-    default:
-      return null;
-  }
-};
+import React, { useState } from "react";
+import { 
+  Zap, 
+  Dumbbell, 
+  Cpu, 
+  ChevronRight, 
+  RotateCcw, 
+  Terminal, 
+  Code, 
+  ExternalLink, 
+  BarChart3,
+  Github,
+} from "lucide-react";
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showFloatingQR, setShowFloatingQR] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowFloatingQR(window.scrollY > 300);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // 外部連結設定
   const socialLinks = {
@@ -96,19 +45,19 @@ const App = () => {
 
   const advantages = [
     {
-      icon: <Icon name="Zap" className="w-8 h-8 text-green-500" />,
+      icon: <Zap className="w-8 h-8 text-green-500" />,
       title: "三刀流般的執行力",
       description:
         "「傷痕是男兒的勳章」。在震盪的市場中，我以最剛猛的自律與速度，為您斬開獲利的道路。",
     },
     {
-      icon: <Icon name="Dumbbell" className="w-8 h-8 text-green-500" />,
+      icon: <Dumbbell className="w-8 h-8 text-green-500" />,
       title: "健力者的嚴格自律",
       description:
         "交易如健身，沒有捷徑。數年盯盤資歷，靠的是極致的自律，我深信「受盡苦難而不厭」，才是通往極致的唯一路徑。",
     },
     {
-      icon: <Icon name="Cpu" className="w-8 h-8 text-green-500" />,
+      icon: <Cpu className="w-8 h-8 text-green-500" />,
       title: "最強大的名刀系統",
       description:
         "從看盤軟體到 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。",
@@ -143,30 +92,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      {/* 懸浮右側 LINE QR Code */}
-      <div
-        className={`fixed right-0 top-1/2 -translate-y-1/2 z-[100] transition-all duration-500 transform ${showFloatingQR ? "translate-x-0" : "translate-x-full"}`}
-      >
-        <div className="group relative flex items-center">
-          {/* 隱藏的展開區域 */}
-          <div className="bg-white p-4 rounded-l-3xl shadow-2xl border-2 border-r-0 border-green-500 translate-x-full group-hover:translate-x-0 transition-transform duration-300">
-            <div className="flex flex-col items-center gap-2">
-              <img
-                src="/zoro/imgs/M_502ysqhc_GW.png"
-                alt="Line QR"
-                className="w-32 h-32"
-              />
-              <span className="text-[10px] font-black text-slate-800">
-                掃描加 LINE
-              </span>
-              <span className="bg-red-500 text-white text-[8px] px-2 py-0.5 rounded-full animate-pulse">
-                優惠諮詢
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="min-h-screen bg-[#0b121e] font-sans">
         {/* Hero 區塊 */}
         <section
@@ -209,7 +134,7 @@ const App = () => {
                   className="animate-bounce bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-md font-black text-xl shadow-[0_10px_30px_rgba(22,163,74,0.4)] transition cursor-pointer flex items-center gap-3 no-underline"
                 >
                   立即線上開戶{" "}
-                  <SVGIcon name="ChevronRight" className="w-6 h-6" />
+                  <ChevronRight className="w-6 h-6" />
                 </a>
                 <a
                   href="#contact"
@@ -229,7 +154,7 @@ const App = () => {
                 {/* 提示點擊的小標籤 (只在未翻轉時顯示) */}
                 {!isFlipped && (
                   <div className="absolute -top-4 -left-4 z-30 bg-white text-green-600 px-3 py-1 rounded-full text-xs font-black shadow-lg animate-bounce flex items-center gap-1 border-2 border-green-500">
-                    <SVGIcon name="RotateCcw" className="w-3 h-3" />
+                    <RotateCcw className="w-3 h-3" />
                     點擊了解 CLICK TO FLIP
                   </div>
                 )}
@@ -275,13 +200,12 @@ const App = () => {
                 {/* 反面: 詳細資訊面 (技術棧與經驗版面) */}
                 <div className="absolute inset-0 backface-hidden rotate-y-180">
                   <div className="absolute -top-4 -left-4 z-30 bg-white text-green-600 px-3 py-1 rounded-full text-xs font-black shadow-lg animate-bounce flex items-center gap-1 border-2 border-green-500">
-                    <SVGIcon name="RotateCcw" className="w-3 h-3" />
+                    <RotateCcw className="w-3 h-3" />
                     點擊翻閱 CLICK TO FLIP
                   </div>
                   <div className="h-full bg-slate-900 rounded-[2rem] border-2 border-green-400 p-6 flex flex-col shadow-2xl relative overflow-hidden">
                     <div className="absolute -top-10 -right-10 opacity-5">
-                      <SVGIcon
-                        name="Terminal"
+                      <Terminal
                         className="w-64 h-64 text-white"
                       />
                     </div>
@@ -289,8 +213,7 @@ const App = () => {
                     <div className="relative z-10 h-full flex flex-col">
                       <div className="text-center mb-6">
                         <div className="inline-flex p-2 bg-green-500/10 rounded-lg mb-2">
-                          <SVGIcon
-                            name="Code"
+                          <Code
                             className="w-6 h-6 text-green-400"
                           />
                         </div>
@@ -312,23 +235,14 @@ const App = () => {
                           >
                             <div className="flex items-center justify-between mb-1">
                               <div className="flex items-center gap-2">
-                                <img
-                                  // src="/zoro/imgs/icons/icons8-facebook (1).svg"
-                                  // src="/zoro/imgs/icons/icons8-github-48.png"
-                                  src="/zoro/imgs/icons/icons8-github-50.png"
-                                  className="w-4 h-4 grayscale group-hover/item:grayscale-0"
-                                  alt="LeetCode"
-                                />
-                                <SVGIcon
-                                  name="Github"
+                                <Github
                                   className="w-4 h-4 text-slate-400 group-hover/item:text-white"
                                 />
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter group-hover/item:text-slate-300">
                                   Github
                                 </span>
                               </div>
-                              <SVGIcon
-                                name="ExternalLink"
+                              <ExternalLink
                                 className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity"
                               />
                             </div>
@@ -350,7 +264,7 @@ const App = () => {
                                   <span className="text-[8px] text-orange-400 font-bold">LC</span>
                                 </div> */}
                                 <img
-                                  src="/zoro/imgs/icons/icons8-leetcode-24.png"
+                                  src="/zoro/imgs/icons/icons8-leetcode-48.png"
                                   className="w-4 h-4 grayscale group-hover/item:grayscale-0"
                                   alt="LeetCode"
                                 />
@@ -358,8 +272,7 @@ const App = () => {
                                   LeetCode
                                 </span>
                               </div>
-                              <SVGIcon
-                                name="ExternalLink"
+                              <ExternalLink
                                 className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity"
                               />
                             </div>
@@ -564,8 +477,7 @@ const App = () => {
 
             <div className="md:w-1/2 grid grid-cols-2 gap-6 w-full text-left">
               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
-                <Icon
-                  name="BarChart3"
+                <BarChart3
                   className="text-green-500 mb-4 w-8 h-8"
                 />
                 <h4 className="font-black text-xl text-left">MultiCharts</h4>
@@ -574,7 +486,7 @@ const App = () => {
                 </p>
               </div>
               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
-                <Icon name="Cpu" className="text-green-500 mb-4 w-8 h-8" />
+                <Cpu className="text-green-500 mb-4 w-8 h-8" />
                 <h4 className="font-black text-xl text-left">API Trading</h4>
                 <p className="text-slate-400 text-sm mt-2 font-light text-left">
                   極致低延遲，專屬程式交易方案
@@ -590,8 +502,8 @@ const App = () => {
         <div className="bg-green-600 rounded-[3rem] p-10 md:p-20 text-white flex flex-col md:flex-row gap-12 items-center shadow-2xl shadow-green-200 text-left">
             <div className="md:w-1/3 text-left">
               <div className="flex justify-start gap-4 mb-6">
-                 <Icon name="Gamepad2" className="w-10 h-10" />
-                 <Icon name="Dumbbell" className="w-10 h-10" />
+                 <Gamepad2 className="w-10 h-10" />
+                 <Dumbbell className="w-10 h-10" />
               </div>
               <h2 className="text-4xl font-black leading-tight mb-4 text-left">跨界極致<br />成就專業</h2>
             </div>

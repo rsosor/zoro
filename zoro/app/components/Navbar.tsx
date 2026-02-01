@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Icon from './Icon'; // 引入剛才抽出去的組件
+import { MessageCircle, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function Navbar() {
             </div>
             
             <div className="hidden md:flex space-x-8 items-center font-medium text-slate-600">
-              <a href="#about" className="hover:text-green-600 transition font-bold">關於我</a>
+              <Link href="/#" className="hover:text-green-600 transition font-bold">關於我</Link>
               <Link 
                 href="/open-account" 
                 className="hover:text-green-600 transition font-bold"
@@ -48,20 +48,20 @@ export default function Navbar() {
               >
                 線上開戶教學
               </Link>
-              <a href="#systems" className="hover:text-green-600 transition font-bold">關注</a>
+              <Link href="/#systems" className="hover:text-green-600 transition font-bold">關注</Link>
               <a href="#" className="hover:text-green-600 transition font-bold">凱基期貨選擇權教學</a>
               {/* <a href="#experience" className="hover:text-green-600 transition">實戰經歷</a> */}
               <button 
                 onClick={() => window.open(socialLinks.openLineOAUrl, '_blank')}
                 className="bg-green-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-700 transition flex items-center gap-2 shadow-lg shadow-green-200"
               >
-                <Icon name="MessageCircle" className="w-5 h-5" /> 聯繫宗佑
+                <MessageCircle className="w-5 h-5" /> 聯繫宗佑
               </button>
             </div>
 
             <div className="md:hidden">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <Icon name="X" /> : <Icon name="Menu" />}
+                {isMenuOpen ? <X /> : <Menu />}
               </button>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function Navbar() {
 
         {isMenuOpen && (
           <div className="md:hidden bg-white border-b border-slate-100 p-4 space-y-4 text-left">
-            <a href="#about" className="hover:text-green-600 transition font-bold">關於我</a>
+            <a href="#" className="hover:text-green-600 transition font-bold">關於我</a>
             <a href="#" className="hover:text-green-600 transition font-bold">線上開戶教學</a>
             <a href="#systems" className="hover:text-green-600 transition font-bold">凱基軟體</a>
             <a href="#about" className="hover:text-green-600 transition font-bold">凱基期貨選擇權教學</a>            {/* <a href="#experience" className="block font-medium py-2 text-left">實戰經歷</a> */}
@@ -77,7 +77,7 @@ export default function Navbar() {
               onClick={() => window.open(socialLinks.openLineOAUrl, '_blank')}
               className="w-full bg-green-600 text-white px-6 py-3 rounded-lg font-bold flex items-center justify-center gap-2"
             >
-              <Icon name="MessageCircle" className="w-5 h-5"/> 聯繫宗佑
+              <MessageCircle className="w-5 h-5"/> 聯繫宗佑
             </button>
           </div>
         )}
