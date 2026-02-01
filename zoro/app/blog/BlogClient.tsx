@@ -106,7 +106,6 @@ export default function App() {
   const [selectedPost, setSelectedPost] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("ALL");
-
   // 實時狀態
   const [currentTime, setCurrentTime] = useState("");
   const [todayDay, setTodayDay] = useState("");
@@ -269,10 +268,10 @@ export default function App() {
                 Live
               </span>
               <span className="text-slate-400 font-bold text-[10px] tracking-[0.2em] uppercase italic">
-                Zoro Training Academy
+                交易與健身都需要極其強大的自律...記錄並分享我的心得。
               </span>
             </div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tighter flex items-center gap-3">
+            <h1 className="text-2xl font-black text-slate-700 tracking-tighter flex items-center gap-3">
               <Sword className="text-emerald-500 rotate-45" size={32} />
               凱基期貨營業員
               <span className="text-emerald-500 font-light text-2xl">/</span>
@@ -502,7 +501,7 @@ export default function App() {
                   等待選取修煉卷軸...
                 </h3>
                 <p className="text-slate-400 text-xs mt-2 font-bold uppercase tracking-widest opacity-60">
-                  Select a file to begin reading
+                  Waiting for scroll decryption
                 </p>
               </div>
             )}

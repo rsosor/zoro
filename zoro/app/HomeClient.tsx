@@ -510,7 +510,7 @@ const App = () => {
       </section> */}
 
       {/* 獨立 QR Code 加好友區塊 */}
-      <section id="contact" className="py-24 bg-slate-100">
+      <section id="contact" className="py-24 bg-slate-100 scroll-mt-28">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl flex flex-col md:flex-row items-center gap-12 border border-slate-200">
             <div className="md:w-3/5 text-left">

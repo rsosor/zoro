@@ -1,16 +1,52 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { MessageCircle, Menu, X } from "lucide-react";
+import { MessageCircle, Menu, X, Megaphone, ExternalLink } from "lucide-react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentAnnounce, setCurrentAnnounce] = useState(0);
   const pathname = usePathname();
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  // 活動看板內容
+  // const announcements = [
+  //   "🔥 凱基新戶限時優惠「阿姆斯賺」：新戶交易達成即送 500 元超商禮券！",
+  //   "📢 本週五晚上 19:00：期貨基礎進階講座（線上直播）",
+  //   "⚡ 近期大盤波動劇烈，請各位投資人注意保證金水位。",
+  //   "📈 掌握最新三刀流策略，歡迎點擊左側聯絡方式諮詢。"
+  // ];
+  // 活動看板內容：新增了 url 欄位，可以直接導向活動頁面或 LINE
+  const announcements = [
+    {
+      text: "🔥 凱基新戶限時優惠「阿姆斯賺」：新戶交易達成即送 500 元超商禮券！",
+      url: "https://event.kgi.com.tw/news/event/armstrong/index.html", // 替換為實際活動網址
+    },
+    {
+      text: "📢 本週五晚上 19:00：期貨基礎進階講座（線上直播）",
+      url: "#", // 替換為講座報名連結
+    },
+    {
+      text: "⚡ 近期大盤波動劇烈，請各位投資人注意保證金水位。",
+      url: null, // 若無連結則設為 null
+    },
+    {
+      text: "📢 開戶找凱基期貨營業員 謝宗佑，歡迎聯繫。",
+      url: "https://lin.ee/i7koSZH",
+    },
+  ];
+
+  // 跑馬燈計時器
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentAnnounce((prev) => (prev + 1) % announcements.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleScroll = (e) => {
     // 檢查目前是否就在首頁
@@ -107,10 +143,35 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      {/* 頂部活動看板 */}
+      <div
+        className={`bg-slate-900 text-white py-2.5 px-4 overflow-hidden border-b border-emerald-500/30 sticky top-0 z-50 ${announcements[currentAnnounce].url ? "cursor-pointer hover:bg-slate-800 transition-colors" : ""}`}
+        onClick={() => {
+          const url = announcements[currentAnnounce].url;
+          if (url) window.open(url, "_blank");
+        }}
+      >
+        <div className="max-w-[1300px] mx-auto flex items-center gap-3">
+          <div className="flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-tighter shrink-0 border border-emerald-500/30">
+            <Megaphone size={12} />
+            Notice
+          </div>
+          <p className="text-xs font-bold tracking-wide italic truncate">
+            {announcements[currentAnnounce].text}
+          </p>
+          {announcements[currentAnnounce].url && (
+            <ExternalLink size={12} className="text-emerald-500 animate-pulse" />
+          )}
+        </div>
+      </div>
 
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b border-slate-100 p-4 space-y-4 text-left">
-          <Link href="/#" onClick={scrollToTop} className="hover:text-green-600 transition font-bold">
+          <Link
+            href="/#"
+            onClick={scrollToTop}
+            className="hover:text-green-600 transition font-bold"
+          >
             關於我
           </Link>
           <Link

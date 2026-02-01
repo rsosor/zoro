@@ -327,229 +327,229 @@
 //   );
 // }
 
-import React, { useState, useEffect } from 'react';
-import { 
-  Search, Sword, Activity, TrendingUp, 
-  BarChart3, Cpu, Zap, Terminal, 
-  ChevronRight, Hash, ShieldCheck, 
-  Layers, Filter
-} from 'lucide-react';
+// import React, { useState, useEffect } from 'react';
+// import { 
+//   Search, Sword, Activity, TrendingUp, 
+//   BarChart3, Cpu, Zap, Terminal, 
+//   ChevronRight, Hash, ShieldCheck, 
+//   Layers, Filter
+// } from 'lucide-react';
 
-/**
- * [索隆風格 - 修鍊者儀表板 V2]
- * 1. 調整色調：從純黑改為層次豐富的工業灰藍 (Slate-950)。
- * 2. 移除背景大文字裝飾，強化區塊感。
- * 3. 優化列表與內容的「玻璃擬態」視覺效果。
- */
+// /**
+//  * [索隆風格 - 修鍊者儀表板 V2]
+//  * 1. 調整色調：從純黑改為層次豐富的工業灰藍 (Slate-950)。
+//  * 2. 移除背景大文字裝飾，強化區塊感。
+//  * 3. 優化列表與內容的「玻璃擬態」視覺效果。
+//  */
 
-export default function App() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("ALL");
+// export default function App() {
+//   const [posts, setPosts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [selectedPost, setSelectedPost] = useState(null);
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [activeTab, setActiveTab] = useState("ALL");
 
-  const coreAttributes = [
-    { name: "MultiCharts", value: "98%", desc: "策略同步率", icon: <BarChart3 className="w-4 h-4" /> },
-    { name: "API Trading", value: "12ms", desc: "傳輸延遲", icon: <Cpu className="w-4 h-4" /> },
-    { name: "SBD Total", value: "400kg", desc: "力量指標", icon: <Zap className="w-4 h-4" /> }
-  ];
+//   const coreAttributes = [
+//     { name: "MultiCharts", value: "98%", desc: "策略同步率", icon: <BarChart3 className="w-4 h-4" /> },
+//     { name: "API Trading", value: "12ms", desc: "傳輸延遲", icon: <Cpu className="w-4 h-4" /> },
+//     { name: "SBD Total", value: "400kg", desc: "力量指標", icon: <Zap className="w-4 h-4" /> }
+//   ];
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      // 實際應用中可從 GitHub Pages 讀取 md 或 posts.json
-      const mockPosts = [
-        {
-          id: '1',
-          title: '三刀流備賽：SBD 總和 400kg 達成路徑',
-          category: '健力日誌',
-          date: '2024.05.20',
-          content: '# 三刀流備賽心得\n\n「受盡苦難而不厭，此乃阿修羅之道。」\n\n這不只是力量的堆疊，更是意志的磨練。每一次深蹲到底部的停頓，都是為了下一次更有力的爆發。核心的穩定程度直接決定了起身的瞬間爆發力。',
-          fileName: 'lifting-meet-01.md'
-        },
-        {
-          id: '2',
-          title: '當沖戰場：在量價的刀光劍影中生存',
-          category: '當沖實戰',
-          date: '2024.05.18',
-          content: '# 當沖實戰筆記\n\n市場沒有憐憫。API 下單的快準狠，是生存的唯一保障。觀察五檔量價的跳動，就像預判對手的劍路。今日早盤波動率上升，策略同步率維持在 95% 以上。',
-          fileName: 'daytrade-20240518.md'
-        }
-      ];
+//   useEffect(() => {
+//     const fetchPosts = async () => {
+//       setLoading(true);
+//       // 實際應用中可從 GitHub Pages 讀取 md 或 posts.json
+//       const mockPosts = [
+//         {
+//           id: '1',
+//           title: '三刀流備賽：SBD 總和 400kg 達成路徑',
+//           category: '健力日誌',
+//           date: '2024.05.20',
+//           content: '# 三刀流備賽心得\n\n「受盡苦難而不厭，此乃阿修羅之道。」\n\n這不只是力量的堆疊，更是意志的磨練。每一次深蹲到底部的停頓，都是為了下一次更有力的爆發。核心的穩定程度直接決定了起身的瞬間爆發力。',
+//           fileName: 'lifting-meet-01.md'
+//         },
+//         {
+//           id: '2',
+//           title: '當沖戰場：在量價的刀光劍影中生存',
+//           category: '當沖實戰',
+//           date: '2024.05.18',
+//           content: '# 當沖實戰筆記\n\n市場沒有憐憫。API 下單的快準狠，是生存的唯一保障。觀察五檔量價的跳動，就像預判對手的劍路。今日早盤波動率上升，策略同步率維持在 95% 以上。',
+//           fileName: 'daytrade-20240518.md'
+//         }
+//       ];
       
-      setTimeout(() => {
-        setPosts(mockPosts);
-        setLoading(false);
-      }, 600);
-    };
-    fetchPosts();
-  }, []);
+//       setTimeout(() => {
+//         setPosts(mockPosts);
+//         setLoading(false);
+//       }, 600);
+//     };
+//     fetchPosts();
+//   }, []);
 
-  const filteredPosts = posts.filter(post => 
-    (activeTab === "ALL" || post.category === activeTab) &&
-    (post.title.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+//   const filteredPosts = posts.filter(post => 
+//     (activeTab === "ALL" || post.category === activeTab) &&
+//     (post.title.toLowerCase().includes(searchTerm.toLowerCase()))
+//   );
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-emerald-500/30 overflow-x-hidden">
+//   return (
+//     <div className="min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-emerald-500/30 overflow-x-hidden">
       
-      <main className="max-w-[1400px] mx-auto p-6 lg:p-12 relative z-10">
+//       <main className="max-w-[1400px] mx-auto p-6 lg:p-12 relative z-10">
         
-        {/* 頂部標題與狀態欄 */}
-        <header className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-              <span className="text-emerald-500 font-black text-[10px] tracking-[0.4em] uppercase">System: Operational</span>
-            </div>
-            <h1 className="text-5xl font-black text-white tracking-tighter italic flex items-center gap-2">
-              ZORO<span className="text-emerald-500 font-normal">/</span>LOG
-            </h1>
-          </div>
+//         {/* 頂部標題與狀態欄 */}
+//         <header className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
+//           <div>
+//             <div className="flex items-center gap-3 mb-3">
+//               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+//               <span className="text-emerald-500 font-black text-[10px] tracking-[0.4em] uppercase">System: Operational</span>
+//             </div>
+//             <h1 className="text-5xl font-black text-white tracking-tighter italic flex items-center gap-2">
+//               ZORO<span className="text-emerald-500 font-normal">/</span>LOG
+//             </h1>
+//           </div>
 
-          {/* 核心屬性面板 */}
-          <div className="flex flex-wrap gap-3 w-full lg:w-auto">
-            {coreAttributes.map((attr, i) => (
-              <div key={i} className="flex-1 lg:w-40 bg-slate-900/50 border border-slate-800 p-4 rounded-xl group hover:border-emerald-500/40 transition-all shadow-xl">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-slate-600 group-hover:text-emerald-500 transition-colors">{attr.icon}</span>
-                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-tighter">{attr.name}</span>
-                </div>
-                <div className="text-lg font-black text-white italic">{attr.value}</div>
-                <div className="text-[10px] text-slate-600 font-bold mt-0.5">{attr.desc}</div>
-              </div>
-            ))}
-          </div>
-        </header>
+//           {/* 核心屬性面板 */}
+//           <div className="flex flex-wrap gap-3 w-full lg:w-auto">
+//             {coreAttributes.map((attr, i) => (
+//               <div key={i} className="flex-1 lg:w-40 bg-slate-900/50 border border-slate-800 p-4 rounded-xl group hover:border-emerald-500/40 transition-all shadow-xl">
+//                 <div className="flex items-center justify-between mb-2">
+//                   <span className="text-slate-600 group-hover:text-emerald-500 transition-colors">{attr.icon}</span>
+//                   <span className="text-[9px] font-black text-slate-500 uppercase tracking-tighter">{attr.name}</span>
+//                 </div>
+//                 <div className="text-lg font-black text-white italic">{attr.value}</div>
+//                 <div className="text-[10px] text-slate-600 font-bold mt-0.5">{attr.desc}</div>
+//               </div>
+//             ))}
+//           </div>
+//         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+//         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* 左側：導航與列表控制 */}
-          <div className="lg:col-span-4 space-y-8">
+//           {/* 左側：導航與列表控制 */}
+//           <div className="lg:col-span-4 space-y-8">
             
-            {/* 搜尋區塊 */}
-            <div className="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 shadow-lg">
-              <div className="flex items-center gap-2 mb-4 text-slate-500">
-                <Search size={14} />
-                <span className="text-[10px] font-black tracking-widest uppercase">Intel Search</span>
-              </div>
-              <input 
-                type="text"
-                placeholder="輸入關鍵字..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all font-bold text-white placeholder:text-slate-700"
-              />
-            </div>
+//             {/* 搜尋區塊 */}
+//             <div className="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 shadow-lg">
+//               <div className="flex items-center gap-2 mb-4 text-slate-500">
+//                 <Search size={14} />
+//                 <span className="text-[10px] font-black tracking-widest uppercase">Intel Search</span>
+//               </div>
+//               <input 
+//                 type="text"
+//                 placeholder="輸入關鍵字..."
+//                 value={searchTerm}
+//                 onChange={(e) => setSearchTerm(e.target.value)}
+//                 className="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all font-bold text-white placeholder:text-slate-700"
+//               />
+//             </div>
 
-            {/* 修鍊類別切換 */}
-            <div className="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 shadow-lg">
-              <div className="flex items-center gap-2 mb-4 text-slate-500">
-                <Filter size={14} />
-                <span className="text-[10px] font-black tracking-widest uppercase">Categories</span>
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                {["ALL", "健力日誌", "當沖實戰"].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`flex items-center justify-between px-4 py-3 font-black text-xs tracking-widest transition-all rounded-xl border ${
-                      activeTab === tab 
-                      ? 'bg-emerald-500 text-slate-950 border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.2)]' 
-                      : 'bg-slate-950 text-slate-500 border-slate-800 hover:border-slate-600'
-                    }`}
-                  >
-                    <span>{tab}</span>
-                    {activeTab === tab ? <Sword size={12} /> : <Hash size={12} className="opacity-20" />}
-                  </button>
-                ))}
-              </div>
-            </div>
+//             {/* 修鍊類別切換 */}
+//             <div className="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 shadow-lg">
+//               <div className="flex items-center gap-2 mb-4 text-slate-500">
+//                 <Filter size={14} />
+//                 <span className="text-[10px] font-black tracking-widest uppercase">Categories</span>
+//               </div>
+//               <div className="grid grid-cols-1 gap-2">
+//                 {["ALL", "健力日誌", "當沖實戰"].map((tab) => (
+//                   <button
+//                     key={tab}
+//                     onClick={() => setActiveTab(tab)}
+//                     className={`flex items-center justify-between px-4 py-3 font-black text-xs tracking-widest transition-all rounded-xl border ${
+//                       activeTab === tab 
+//                       ? 'bg-emerald-500 text-slate-950 border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.2)]' 
+//                       : 'bg-slate-950 text-slate-500 border-slate-800 hover:border-slate-600'
+//                     }`}
+//                   >
+//                     <span>{tab}</span>
+//                     {activeTab === tab ? <Sword size={12} /> : <Hash size={12} className="opacity-20" />}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
 
-            {/* 文章列表 */}
-            <div className="space-y-3 overflow-y-auto max-h-[400px] pr-2 scrollbar-thin scrollbar-thumb-slate-800">
-              {loading ? (
-                <div className="p-8 text-center text-xs font-black tracking-widest text-slate-800 uppercase animate-pulse">Accessing Database...</div>
-              ) : filteredPosts.map(post => (
-                <div 
-                  key={post.id}
-                  onClick={() => setSelectedPost(post)}
-                  className={`cursor-pointer group p-5 rounded-2xl border transition-all ${
-                    selectedPost?.id === post.id 
-                    ? 'bg-slate-900 border-emerald-500/50 shadow-lg' 
-                    : 'bg-transparent border-slate-900 hover:border-slate-800 hover:bg-slate-900/20'
-                  }`}
-                >
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-[9px] font-black text-emerald-500/70 uppercase tracking-widest">{post.date}</span>
-                    <ChevronRight size={14} className={`transition-transform ${selectedPost?.id === post.id ? 'translate-x-1 text-emerald-500' : 'text-slate-800'}`} />
-                  </div>
-                  <h3 className={`font-black text-base transition-colors ${selectedPost?.id === post.id ? 'text-white' : 'text-slate-500 group-hover:text-slate-300'}`}>
-                    {post.title}
-                  </h3>
-                </div>
-              ))}
-            </div>
-          </div>
+//             {/* 文章列表 */}
+//             <div className="space-y-3 overflow-y-auto max-h-[400px] pr-2 scrollbar-thin scrollbar-thumb-slate-800">
+//               {loading ? (
+//                 <div className="p-8 text-center text-xs font-black tracking-widest text-slate-800 uppercase animate-pulse">Accessing Database...</div>
+//               ) : filteredPosts.map(post => (
+//                 <div 
+//                   key={post.id}
+//                   onClick={() => setSelectedPost(post)}
+//                   className={`cursor-pointer group p-5 rounded-2xl border transition-all ${
+//                     selectedPost?.id === post.id 
+//                     ? 'bg-slate-900 border-emerald-500/50 shadow-lg' 
+//                     : 'bg-transparent border-slate-900 hover:border-slate-800 hover:bg-slate-900/20'
+//                   }`}
+//                 >
+//                   <div className="flex justify-between items-center mb-1.5">
+//                     <span className="text-[9px] font-black text-emerald-500/70 uppercase tracking-widest">{post.date}</span>
+//                     <ChevronRight size={14} className={`transition-transform ${selectedPost?.id === post.id ? 'translate-x-1 text-emerald-500' : 'text-slate-800'}`} />
+//                   </div>
+//                   <h3 className={`font-black text-base transition-colors ${selectedPost?.id === post.id ? 'text-white' : 'text-slate-500 group-hover:text-slate-300'}`}>
+//                     {post.title}
+//                   </h3>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
 
-          {/* 右側：詳細情報內容 */}
-          <div className="lg:col-span-8">
-            {selectedPost ? (
-              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                <div className="bg-slate-900/40 rounded-[2rem] border border-slate-800 shadow-2xl overflow-hidden">
-                  <div className="px-8 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Layers size={14} className="text-emerald-500" />
-                      <span className="text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">{selectedPost.category}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                      <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Secured Node: {selectedPost.id}</span>
-                    </div>
-                  </div>
+//           {/* 右側：詳細情報內容 */}
+//           <div className="lg:col-span-8">
+//             {selectedPost ? (
+//               <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+//                 <div className="bg-slate-900/40 rounded-[2rem] border border-slate-800 shadow-2xl overflow-hidden">
+//                   <div className="px-8 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+//                     <div className="flex items-center gap-3">
+//                       <Layers size={14} className="text-emerald-500" />
+//                       <span className="text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">{selectedPost.category}</span>
+//                     </div>
+//                     <div className="flex items-center gap-2">
+//                       <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+//                       <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Secured Node: {selectedPost.id}</span>
+//                     </div>
+//                   </div>
 
-                  <div className="p-8 lg:p-14">
-                    <h2 className="text-4xl lg:text-5xl font-black text-white italic mb-10 tracking-tighter leading-tight">
-                      {selectedPost.title}
-                    </h2>
+//                   <div className="p-8 lg:p-14">
+//                     <h2 className="text-4xl lg:text-5xl font-black text-white italic mb-10 tracking-tighter leading-tight">
+//                       {selectedPost.title}
+//                     </h2>
                     
-                    <div className="prose prose-invert max-w-none">
-                      <div className="text-slate-400 text-lg leading-loose font-medium whitespace-pre-wrap">
-                        {selectedPost.content}
-                      </div>
-                    </div>
+//                     <div className="prose prose-invert max-w-none">
+//                       <div className="text-slate-400 text-lg leading-loose font-medium whitespace-pre-wrap">
+//                         {selectedPost.content}
+//                       </div>
+//                     </div>
 
-                    <div className="mt-20 pt-8 border-t border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                      <div className="flex items-center gap-4">
-                        <ShieldCheck className="text-emerald-500/30" size={24} />
-                        <div>
-                          <p className="text-[9px] font-black text-slate-600 tracking-[0.2em] uppercase leading-none">Intelligence Verified</p>
-                          <p className="text-[10px] text-slate-500 font-bold mt-1">Source: Static GitHub Pages Repository</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-1.5">
-                        {[1, 2, 3, 4, 5].map(i => (
-                          <div key={i} className={`h-1 w-6 rounded-full ${i <= 3 ? 'bg-emerald-500/50' : 'bg-slate-800'}`}></div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="h-full min-h-[550px] rounded-[2.5rem] border-2 border-dashed border-slate-900 flex flex-col items-center justify-center opacity-40 group">
-                <div className="relative">
-                  <div className="w-24 h-24 border-4 border-slate-800 rounded-full flex items-center justify-center group-hover:border-emerald-500/20 transition-all duration-700">
-                    <Terminal size={40} className="text-slate-800 group-hover:text-emerald-500/30 transition-all" />
-                  </div>
-                </div>
-                <h3 className="text-[10px] font-black text-slate-800 tracking-[0.8em] mt-8 uppercase">Wait for Input...</h3>
-              </div>
-            )}
-          </div>
-        </div>
-      </main>
-    </div>
-  );
-}
+//                     <div className="mt-20 pt-8 border-t border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
+//                       <div className="flex items-center gap-4">
+//                         <ShieldCheck className="text-emerald-500/30" size={24} />
+//                         <div>
+//                           <p className="text-[9px] font-black text-slate-600 tracking-[0.2em] uppercase leading-none">Intelligence Verified</p>
+//                           <p className="text-[10px] text-slate-500 font-bold mt-1">Source: Static GitHub Pages Repository</p>
+//                         </div>
+//                       </div>
+//                       <div className="flex gap-1.5">
+//                         {[1, 2, 3, 4, 5].map(i => (
+//                           <div key={i} className={`h-1 w-6 rounded-full ${i <= 3 ? 'bg-emerald-500/50' : 'bg-slate-800'}`}></div>
+//                         ))}
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             ) : (
+//               <div className="h-full min-h-[550px] rounded-[2.5rem] border-2 border-dashed border-slate-900 flex flex-col items-center justify-center opacity-40 group">
+//                 <div className="relative">
+//                   <div className="w-24 h-24 border-4 border-slate-800 rounded-full flex items-center justify-center group-hover:border-emerald-500/20 transition-all duration-700">
+//                     <Terminal size={40} className="text-slate-800 group-hover:text-emerald-500/30 transition-all" />
+//                   </div>
+//                 </div>
+//                 <h3 className="text-[10px] font-black text-slate-800 tracking-[0.8em] mt-8 uppercase">Wait for Input...</h3>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </main>
+//     </div>
+//   );
+// }
