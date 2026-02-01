@@ -1,31 +1,57 @@
 name: Deploy Next.js site to Pages
+
 on:
   push:
-    branches: ["main"] # 或是你的主分支名稱
+    branches: ["main"]
+    paths:
+      - 'zoro/**' # 監控 zoro 資料夾內的變動
+
 permissions:
-  contents: read
+  contents: write  # 必須改為 write，腳本才能自動更新 JSON 並 push
   pages: write
   id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 獲取完整紀錄，確保 git push 正常
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
       - name: Install dependencies
         run: npm install
         working-directory: ./zoro
+
+      - name: Generate Posts Index
+        run: |
+          # 執行你的自動更新腳本
+          node scripts/generate-posts.js
+          
+          # 設定 Git 並將更新後的 posts.json 推送回 GitHub
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 檢查 posts.json 是否有變動，有變動才 commit
+          git add public/data/posts.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: 自動更新文章索引 [skip ci]" && git push)
+        working-directory: ./zoro
+
       - name: Build with Next.js
         run: npm run build
         working-directory: ./zoro
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./zoro/out
+
   deploy:
     environment:
       name: github-pages

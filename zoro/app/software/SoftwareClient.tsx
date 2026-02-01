@@ -9,7 +9,7 @@ export default function SoftWareClient() {
   return (
     <div className="min-h-screen bg-white py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">凱基期貨線上開戶 - 完整流程</h1>
+        <h1 className="text-3xl font-bold mb-8">凱基看盤下單系統</h1>
         
         {/* 互動式步驟選單 */}
         <div className="flex gap-4 mb-10">

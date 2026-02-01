@@ -1,15 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Zap, 
-  Dumbbell, 
-  Cpu, 
-  ChevronRight, 
-  RotateCcw, 
-  Terminal, 
-  Code, 
-  ExternalLink, 
+import Link from "next/link";
+import {
+  Zap,
+  Dumbbell,
+  Cpu,
+  ChevronRight,
+  RotateCcw,
+  Terminal,
+  Code,
+  ExternalLink,
   BarChart3,
   Github,
 } from "lucide-react";
@@ -66,28 +67,22 @@ const App = () => {
 
   const tradingSystems = [
     {
-      name: "凱基看盤下單系統（敬請期待）",
-      detail: "直覺流暢，適合全方位投資人",
-    },
-    {
       name: "MultiCharts 策略對接（敬請期待）",
       detail: "專業回測與自動執行方案",
+      path: `/mcs`,
     },
     {
       name: "進階 API 串接服務（敬請期待）",
       detail: "專為程式交易者打造，極低延遲",
+      path: `/api`,
     },
-    { name: "Day Trade 當沖實戰心得", detail: "分享數年盯盤實戰心法" },
-    { name: "健力日誌", detail: "從運動認識自己的身體" },
-  ];
-
-  const skillBadges = [
-    "MultiCharts",
-    "Python API",
-    "React",
-    "Tailwind",
-    "Powerlifting (Big3 450kg+)",
-    "Trading Strategy",
+    {
+      name: "開發看盤下單系統（敬請期待）",
+      detail: "根據需要，建立屬於自己的看盤下單系統",
+      path: `/custom_app`,
+    },
+    { name: "Day Trade 當沖實戰心得", detail: "分享數年盯盤實戰心法", path: `/blog` },
+    { name: "健力日誌", detail: "從運動認識自己的身體", path: `/blog` },
   ];
 
   return (
@@ -133,8 +128,7 @@ const App = () => {
                   rel="noopener noreferrer"
                   className="animate-bounce bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-md font-black text-xl shadow-[0_10px_30px_rgba(22,163,74,0.4)] transition cursor-pointer flex items-center gap-3 no-underline"
                 >
-                  立即線上開戶{" "}
-                  <ChevronRight className="w-6 h-6" />
+                  立即線上開戶 <ChevronRight className="w-6 h-6" />
                 </a>
                 <a
                   href="#contact"
@@ -169,7 +163,7 @@ const App = () => {
                       className="w-full h-full object-contain transition duration-500"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.style.display = "none";
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b121e] via-transparent to-transparent opacity-60 pointer-events-none"></div>
@@ -185,7 +179,7 @@ const App = () => {
                         數年盯盤經驗 ∪ 程式開發經驗
                       </p>
                       <p className="text-slate-500 text-[10px] mt-1 uppercase tracking-tighter text-center text-center">
-                        Day Trader / Powerlifter
+                        Day Trader / Powerlifter / Developer
                       </p>
                     </div>
                   </div>
@@ -205,17 +199,13 @@ const App = () => {
                   </div>
                   <div className="h-full bg-slate-900 rounded-[2rem] border-2 border-green-400 p-6 flex flex-col shadow-2xl relative overflow-hidden">
                     <div className="absolute -top-10 -right-10 opacity-5">
-                      <Terminal
-                        className="w-64 h-64 text-white"
-                      />
+                      <Terminal className="w-64 h-64 text-white" />
                     </div>
 
                     <div className="relative z-10 h-full flex flex-col">
                       <div className="text-center mb-6">
                         <div className="inline-flex p-2 bg-green-500/10 rounded-lg mb-2">
-                          <Code
-                            className="w-6 h-6 text-green-400"
-                          />
+                          <Code className="w-6 h-6 text-green-400" />
                         </div>
                         <h3 className="text-xl font-black text-white tracking-widest uppercase text-center">
                           About Me
@@ -235,16 +225,12 @@ const App = () => {
                           >
                             <div className="flex items-center justify-between mb-1">
                               <div className="flex items-center gap-2">
-                                <Github
-                                  className="w-4 h-4 text-slate-400 group-hover/item:text-white"
-                                />
+                                <Github className="w-4 h-4 text-slate-400 group-hover/item:text-white" />
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter group-hover/item:text-slate-300">
                                   Github
                                 </span>
                               </div>
-                              <ExternalLink
-                                className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity"
-                              />
+                              <ExternalLink className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity" />
                             </div>
                             <p className="text-xs font-mono text-green-400">
                               開發者開源平台
@@ -272,9 +258,7 @@ const App = () => {
                                   LeetCode
                                 </span>
                               </div>
-                              <ExternalLink
-                                className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity"
-                              />
+                              <ExternalLink className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity" />
                             </div>
                             <p className="text-xs font-mono text-orange-400">
                               開發者刷題平台
@@ -438,7 +422,10 @@ const App = () => {
       </section>
 
       {/* 系統工具區 */}
-      <section id="systems" className="py-24 bg-slate-900 text-white text-left">
+      <section
+        id="systems"
+        className="py-24 bg-slate-900 text-white text-left scroll-mt-24"
+      >
         <div className="max-w-7xl mx-auto px-4 text-left">
           <div className="flex flex-col md:flex-row gap-16 items-center text-left">
             <div className="md:w-1/2 text-left">
@@ -462,14 +449,14 @@ const App = () => {
                     <div className="mr-6 text-2xl font-black text-slate-700 group-hover:text-green-500 transition-colors">
                       0{idx + 1}
                     </div>
-                    <div className="border-b border-slate-800 pb-4 w-full text-left">
+                    <Link href={sys.path} className="border-b border-slate-800 pb-4 w-full text-left">
                       <h4 className="text-xl font-bold mb-1 group-hover:text-green-400 transition-colors text-left">
                         {sys.name}
                       </h4>
                       <p className="text-slate-500 text-sm text-left">
                         {sys.detail}
                       </p>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -477,9 +464,7 @@ const App = () => {
 
             <div className="md:w-1/2 grid grid-cols-2 gap-6 w-full text-left">
               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
-                <BarChart3
-                  className="text-green-500 mb-4 w-8 h-8"
-                />
+                <BarChart3 className="text-green-500 mb-4 w-8 h-8" />
                 <h4 className="font-black text-xl text-left">MultiCharts</h4>
                 <p className="text-slate-400 text-sm mt-2 font-light text-left">
                   支援策略回測與自動下單對接

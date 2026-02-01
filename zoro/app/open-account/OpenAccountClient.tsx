@@ -60,7 +60,6 @@ import {
 
 export default function App() {
   const [step, setStep] = useState(1);
-  const [showPreview, setShowPreview] = useState(false);
 
   const officialFlow = [
     { id: 1, label: "申辦資格確認" },
@@ -73,32 +72,120 @@ export default function App() {
 
   // 定義教學流程圖的圖片路徑陣列
   const tutorialImages = [
-    { id: 1, src: "/zoro/imgs/teaching/open_account/1.png", alt: "步驟一：申辦資格認證" },
+    {
+      id: 1,
+      src: "/zoro/imgs/teaching/open_account/1.png",
+      alt: "步驟一：申辦資格認證",
+    },
     // 如果有更多圖片，可以依照格式繼續增加，例如：
-    { id: 2, src: "/zoro/imgs/teaching/open_account/2.png", alt: "步驟一：申辦資格認證" },
-    { id: 3, src: "/zoro/imgs/teaching/open_account/3.png", alt: "步驟二：上傳相關證件" },
-    { id: 4, src: "/zoro/imgs/teaching/open_account/4.png", alt: "步驟二：上傳相關證件" },
-    { id: 5, src: "/zoro/imgs/teaching/open_account/5.png", alt: "步驟三：填寫個人資料" },
-    { id: 6, src: "/zoro/imgs/teaching/open_account/6.png", alt: "步驟三：填寫個人資料" },
-    { id: 7, src: "/zoro/imgs/teaching/open_account/7.png", alt: "步驟三：填寫個人資料" },
-    { id: 8, src: "/zoro/imgs/teaching/open_account/8.png", alt: "步驟三：信箱啟動確認信" },
-    { id: 9, src: "/zoro/imgs/teaching/open_account/9.png", alt: "步驟三：信箱認證成功" },
-    { id: 10, src: "/zoro/imgs/teaching/open_account/10.png", alt: "步驟三：填寫個人資料" },
-    { id: 11, src: "/zoro/imgs/teaching/open_account/11.png", alt: "步驟三：CSR 及 FATCA 自我申明表" },
-    { id: 12, src: "/zoro/imgs/teaching/open_account/12.png", alt: "步驟三：申請布蘭特原油期貨交易功能及申請盤後交易功能" },
-    { id: 13, src: "/zoro/imgs/teaching/open_account/13.png", alt: "步驟三：配合台灣期貨交易所推出盤後交易制度之公告事項" },
-    { id: 14, src: "/zoro/imgs/teaching/open_account/14.png", alt: "步驟三：填寫個人資料" },
-    { id: 15, src: "/zoro/imgs/teaching/open_account/15.png", alt: "步驟三：期貨交易知識認知確認表" },
-    { id: 16, src: "/zoro/imgs/teaching/open_account/16.png", alt: "步驟四：手持身分證上傳" },
-    { id: 17, src: "/zoro/imgs/teaching/open_account/17.png", alt: "步驟五：開戶文件簽署" },
-    { id: 18, src: "/zoro/imgs/teaching/open_account/18.png", alt: "步驟五：簽署成功" },
-    { id: 19, src: "/zoro/imgs/teaching/open_account/19.png", alt: "步驟六：出入金銀行帳戶設定" },
+    {
+      id: 2,
+      src: "/zoro/imgs/teaching/open_account/2.png",
+      alt: "步驟一：申辦資格認證",
+    },
+    {
+      id: 3,
+      src: "/zoro/imgs/teaching/open_account/3.png",
+      alt: "步驟二：上傳相關證件",
+    },
+    {
+      id: 4,
+      src: "/zoro/imgs/teaching/open_account/4.png",
+      alt: "步驟二：上傳相關證件",
+    },
+    {
+      id: 5,
+      src: "/zoro/imgs/teaching/open_account/5.png",
+      alt: "步驟三：填寫個人資料",
+    },
+    {
+      id: 6,
+      src: "/zoro/imgs/teaching/open_account/6.png",
+      alt: "步驟三：填寫個人資料",
+    },
+    {
+      id: 7,
+      src: "/zoro/imgs/teaching/open_account/7.png",
+      alt: "步驟三：填寫個人資料",
+    },
+    {
+      id: 8,
+      src: "/zoro/imgs/teaching/open_account/8.png",
+      alt: "步驟三：信箱啟動確認信",
+    },
+    {
+      id: 9,
+      src: "/zoro/imgs/teaching/open_account/9.png",
+      alt: "步驟三：信箱認證成功",
+    },
+    {
+      id: 10,
+      src: "/zoro/imgs/teaching/open_account/10.png",
+      alt: "步驟三：填寫個人資料",
+    },
+    {
+      id: 11,
+      src: "/zoro/imgs/teaching/open_account/11.png",
+      alt: "步驟三：CSR 及 FATCA 自我申明表",
+    },
+    {
+      id: 12,
+      src: "/zoro/imgs/teaching/open_account/12.png",
+      alt: "步驟三：申請布蘭特原油期貨交易功能及申請盤後交易功能",
+    },
+    {
+      id: 13,
+      src: "/zoro/imgs/teaching/open_account/13.png",
+      alt: "步驟三：配合台灣期貨交易所推出盤後交易制度之公告事項",
+    },
+    {
+      id: 14,
+      src: "/zoro/imgs/teaching/open_account/14.png",
+      alt: "步驟三：填寫個人資料",
+    },
+    {
+      id: 15,
+      src: "/zoro/imgs/teaching/open_account/15.png",
+      alt: "步驟三：期貨交易知識認知確認表",
+    },
+    {
+      id: 16,
+      src: "/zoro/imgs/teaching/open_account/16.png",
+      alt: "步驟四：手持身分證上傳",
+    },
+    {
+      id: 17,
+      src: "/zoro/imgs/teaching/open_account/17.png",
+      alt: "步驟五：開戶文件簽署",
+    },
+    {
+      id: 18,
+      src: "/zoro/imgs/teaching/open_account/18.png",
+      alt: "步驟五：簽署成功",
+    },
+    {
+      id: 19,
+      src: "/zoro/imgs/teaching/open_account/19.png",
+      alt: "步驟六：出入金銀行帳戶設定",
+    },
     { id: 20, src: "/zoro/imgs/teaching/open_account/20.png", alt: "預覽畫面" },
     { id: 21, src: "/zoro/imgs/teaching/open_account/21.png", alt: "預覽畫面" },
-    { id: 22, src: "/zoro/imgs/teaching/open_account/22.png", alt: "預覽畫面(契約副本下載)" },
-    { id: 23, src: "/zoro/imgs/teaching/open_account/23.png", alt: "契約副本輸入密碼" },
+    {
+      id: 22,
+      src: "/zoro/imgs/teaching/open_account/22.png",
+      alt: "預覽畫面(契約副本下載)",
+    },
+    {
+      id: 23,
+      src: "/zoro/imgs/teaching/open_account/23.png",
+      alt: "契約副本輸入密碼",
+    },
     { id: 24, src: "/zoro/imgs/teaching/open_account/24.png", alt: "契約副本" },
-    { id: 25, src: "/zoro/imgs/teaching/open_account/25.png", alt: "開戶完成！" },
+    {
+      id: 25,
+      src: "/zoro/imgs/teaching/open_account/25.png",
+      alt: "開戶完成！",
+    },
   ];
 
   const steps = [
@@ -211,9 +298,55 @@ export default function App() {
           </div>
           <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
             <p className="text-[11px] text-blue-800 leading-relaxed">
-              <span className="font-bold">＊小技巧：</span>若您已有凱基期貨帳號，選擇『已是本公司客戶』可減少基本資料登打時間，並開放自選開戶分公司。
+              <span className="font-bold">＊小技巧：</span>
+              若您已有凱基期貨帳號，選擇『已是本公司客戶』可減少基本資料登打時間，並開放自選開戶分公司。
             </p>
           </div>
+          <div className="mt-6 bg-amber-50 border border-amber-100 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-4">
+              <p className="text-sm text-amber-900 font-bold">
+                提醒：手持身分證上傳為關鍵環節，請確保內容清晰，避免退件。
+              </p>
+            </div>
+          </div>
+          {/* <div className="mt-8 bg-amber-50 border border-amber-100 rounded-2xl p-4 flex items-center gap-4">
+            <p className="text-sm text-amber-900 leading-tight">
+              <span className="font-bold">提醒：</span>{" "}
+              手持身分證上傳為關鍵環節，請確保人臉與證件內容皆清晰可辨，避免退件。
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
+                  1
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  請手持身分證{" "}
+                  <span className="text-slate-900 font-bold">正面</span>
+                  ，置於臉部下方或側邊，避免遮擋五官。
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
+                  2
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  確保光線充足，但須注意身分證上的{" "}
+                  <span className="text-slate-900 font-bold">反光</span>{" "}
+                  是否遮蓋到文字。
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
+                  3
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  拍照時，相機請對焦在{" "}
+                  <span className="text-slate-900 font-bold">身分證</span>{" "}
+                  上，確保證件文字清楚可讀。
+                </p>
+              </div>
+            </div>
+          </div> */}
 
           {/* <div className="bg-slate-900 p-5 rounded-2xl text-white relative overflow-hidden">
             <div className="relative z-10 flex justify-between items-center">
@@ -407,167 +540,117 @@ export default function App() {
             </div>
           </div>
         </div> */}
-        <div className="mt-16 bg-white rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-sm overflow-hidden relative">
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-6">
-              <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center shrink-0">
-                <ImageIcon className="w-8 h-8 text-green-500" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-slate-900">
-                  手持身分證上傳提示
-                </h2>
-                <p className="text-slate-500 text-sm">
-                  截圖步驟 4 為關鍵環節，請確保人臉與證件內容皆清晰可辨。
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setShowPreview(true)}
-                className="whitespace-nowrap bg-slate-100 text-slate-700 px-6 py-3 rounded-xl font-bold hover:bg-slate-200 transition-all"
-              >
-                預覽範例照片
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
 
-      {/* 範例照片彈窗 Modal */}
-      {showPreview && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
-            onClick={() => setShowPreview(false)}
-          />
-          <div className="relative bg-white rounded-[2rem] shadow-2xl max-w-lg w-full overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-              <h3 className="text-xl font-bold text-slate-800">
-                手持身分證範例
-              </h3>
-              <button
-                onClick={() => setShowPreview(false)}
-                className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+      {/* 完整教學截圖展示區 */}
+      <div className="space-y-8">
+        <div className="flex flex-col items-center gap-3">
+          <h2 className="text-3xl font-black text-slate-900 text-center">
+            完整線上開戶流程教學圖
+          </h2>
+        </div>
+
+        <div className="bg-white rounded-[3.5rem] border border-slate-100 shadow-xl overflow-hidden p-4 md:p-8">
+          <div className="space-y-8">
+            {tutorialImages.map((image) => (
+              <div
+                key={image.id}
+                className="bg-slate-50 rounded-[2.5rem] border border-slate-200 overflow-hidden flex flex-col items-center justify-center min-h-[300px] relative"
               >
-                <X className="w-5 h-5 text-slate-400" />
-              </button>
-            </div>
-            <div className="p-8">
-              {/* 這裡模擬一張範例圖示區塊 */}
-              <div className="aspect-[4/3] bg-slate-100 rounded-2xl flex flex-col items-center justify-center border-2 border-dashed border-slate-200 mb-6 overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-200">
-                  <div className="text-center space-y-2">
-                    <ImageIcon className="w-12 h-12 text-slate-400 mx-auto" />
-                    <p className="text-xs text-slate-500 font-bold">
-                      [ 正確拍攝範例圖 ]
-                    </p>
+                {/* 💡 這裡就是處理「第16張圖片(index 15)後放入補充文字」的邏輯 */}
+                {image.alt === "步驟四：手持身分證上傳" && (
+                  <div className="bg-indigo-50 border-l-8 border-indigo-500 rounded-3xl p-8 my-6 shadow-sm">
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="bg-indigo-500 p-2 rounded-xl">
+                        <AlertCircle className="text-white w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-bold text-indigo-900">
+                        補充說明：
+                      </h3>
+                    </div>
+                    <div className="text-indigo-800 leading-relaxed">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-amber-200/50 pt-4">
+                        <div className="flex items-start gap-2.5">
+                          <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
+                            1
+                          </div>
+                          <p className="text-[14px] text-amber-900/80 leading-relaxed">
+                            手持身分證
+                            <span className="font-bold underline text-amber-900">
+                              正面
+                            </span>
+                            ，置於臉部下方或側邊，避免遮擋五官。
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2.5">
+                          <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
+                            2
+                          </div>
+                          <p className="text-[14px] text-amber-900/80 leading-relaxed">
+                            確保光線充足，但須注意身分證上的
+                            <span className="font-bold underline text-amber-900">
+                              反光
+                            </span>
+                            是否遮蓋到文字。
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2.5">
+                          <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
+                            3
+                          </div>
+                          <p className="text-[14px] text-amber-900/80 leading-relaxed">
+                            拍照時，相機請對焦在
+                            <span className="font-bold underline text-amber-900">
+                              身分證
+                            </span>
+                            上，確保證件文字清晰可讀。
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                )}
+                {/* 使用 map 渲染圖片 */}
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="max-w-full md:max-w-4xl h-auto block shadow-md rounded-[2rem] mx-auto my-4"
+                  onError={(e) => {
+                    // 圖片載入失敗時隱藏圖片並顯示錯誤訊息
+                    e.target.style.display = "none";
+                    const fallback = e.target.nextSibling;
+                    if (fallback) fallback.style.display = "block";
+                  }}
+                />
+
+                {/* 備用顯示內容：只有在圖片載入失敗時會被上一段 JS 觸發顯示 */}
+                <div className="hidden text-center py-20 space-y-4">
+                  <ImageIcon className="w-20 h-20 text-slate-300 mx-auto" />
+                  <p className="text-slate-500 font-bold text-xl">
+                    圖片載入中或路徑需確認
+                  </p>
+                  <p className="text-slate-400 text-sm">
+                    當前 ID: {image.id} | 路徑: {image.src}
+                  </p>
                 </div>
-                {/* 輔助說明線條模擬 */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/90 p-3 rounded-xl border border-white shadow-sm">
-                  <div className="flex gap-2 items-start">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    <p className="text-[10px] text-slate-600 font-medium">
-                      身分證正面資訊清晰、不可遮蓋臉部、不可反光。
-                    </p>
-                  </div>
+
+                {/* 裝飾性標籤 */}
+                <div className="absolute top-6 left-6 bg-green-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-full shadow-lg">
+                  STEP {image.id}
                 </div>
               </div>
-
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
-                    1
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    請手持身分證{" "}
-                    <span className="text-slate-900 font-bold">正面</span>
-                    ，置於臉部下方或側邊，避免遮擋五官。
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
-                    2
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    確保光線充足，但須注意身分證上的{" "}
-                    <span className="text-slate-900 font-bold">反光</span>{" "}
-                    是否遮蓋到文字。
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
-                    3
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    拍照時，相機請對焦在{" "}
-                    <span className="text-slate-900 font-bold">身分證</span>{" "}
-                    上，確保證件文字清楚可讀。
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setShowPreview(false)}
-                className="w-full mt-8 bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors"
-              >
-                我了解了
-              </button>
-            </div>
+            ))}
           </div>
         </div>
-      )}
 
-        {/* 完整教學截圖展示區 */}
-        <div className="space-y-8">
-          <div className="flex flex-col items-center gap-3">
-            <h2 className="text-3xl font-black text-slate-900 text-center">完整線上開戶流程教學圖</h2>
-          </div>
-          
-          <div className="bg-white rounded-[3.5rem] border border-slate-100 shadow-xl overflow-hidden p-4 md:p-8">
-            <div className="space-y-8">
-              {tutorialImages.map((image) => (
-                <div key={image.id} className="bg-slate-50 rounded-[2.5rem] border border-slate-200 overflow-hidden flex flex-col items-center justify-center min-h-[300px] relative">
-                  
-                  {/* 使用 map 渲染圖片 */}
-                  <img 
-                    src={image.src} 
-                    alt={image.alt} 
-                    className="max-w-full md:max-w-4xl h-auto block shadow-md rounded-[2rem] mx-auto my-4"
-                    onError={(e) => {
-                      // 圖片載入失敗時隱藏圖片並顯示錯誤訊息
-                      e.target.style.display = 'none';
-                      const fallback = e.target.nextSibling;
-                      if (fallback) fallback.style.display = 'block';
-                    }} 
-                  />
-                  
-                  {/* 備用顯示內容：只有在圖片載入失敗時會被上一段 JS 觸發顯示 */}
-                  <div className="hidden text-center py-20 space-y-4">
-                    <ImageIcon className="w-20 h-20 text-slate-300 mx-auto" />
-                    <p className="text-slate-500 font-bold text-xl">圖片載入中或路徑需確認</p>
-                    <p className="text-slate-400 text-sm">
-                        當前 ID: {image.id} | 路徑: {image.src}
-                    </p>
-                  </div>
-
-                  {/* 裝飾性標籤 */}
-                  <div className="absolute top-6 left-6 bg-green-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-full shadow-lg">
-                    STEP {image.id}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 flex items-start gap-4">
-            <Info className="w-6 h-6 text-blue-500 shrink-0 mt-0.5" />
-            <p className="text-sm text-blue-800 leading-relaxed">
-              <strong>提示：</strong> 若您在操作過程中遇到任何與截圖不符的情況，或是有任何補件疑問，請隨時聯繫營業員宗佑。填寫推薦代號 <span className="font-bold underline">ZORO888</span> 可獲得更即時的協助。
-            </p>
-          </div>
+        <div className="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 flex items-start gap-4">
+          <Info className="w-6 h-6 text-blue-500 shrink-0 mt-0.5" />
+          <p className="text-sm text-blue-800 leading-relaxed">
+            <strong>提示：</strong>{" "}
+            若您在操作過程中遇到任何與截圖不符的情況，或是有任何補件疑問，請隨時聯繫營業員宗佑。
+          </p>
         </div>
+      </div>
     </div>
   );
 }

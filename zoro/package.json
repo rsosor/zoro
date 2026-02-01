@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node scripts/generate-posts.tsx && next dev",
+    "build": "node scripts/generate-posts.tsx && next build",
+    "start": "node scripts/generate-posts.tsx && next start",
     "lint": "eslint"
   },
   "dependencies": {
     "lucide-react": "^0.563.0",
     "next": "16.1.4",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
