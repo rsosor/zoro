@@ -78,11 +78,11 @@ export default function Navbar() {
               期貨選擇權教學
             </Link>
             <Link
-              href="/fu-op"
+              href="/software"
               className="hover:text-green-600 transition font-bold"
               //  className="hover:text-green-600 transition"
             >
-              凱基看盤下單系統
+              凱基看盤下單軟體
             </Link>
             <Link
               href="/#systems"
@@ -128,11 +128,11 @@ export default function Navbar() {
             期貨選擇權教學
           </Link>
           <Link
-            href="/fu-op"
+            href="/software"
             className="hover:text-green-600 transition font-bold"
             //  className="hover:text-green-600 transition"
           >
-            凱基看盤下單系統
+            凱基看盤下單軟體
           </Link>
           <Link
             href="/#systems"

@@ -409,11 +409,6 @@ export default function App() {
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-green-100/50 to-transparent -z-10" />
 
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <button className="flex items-center gap-2 text-slate-500 hover:text-green-600 transition-colors mb-8 group">
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-semibold">返回首頁</span>
-        </button>
-
         <div className="mb-12 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">
             凱基期貨 <span className="text-green-600">線上開戶教學</span>

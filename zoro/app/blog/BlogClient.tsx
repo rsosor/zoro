@@ -308,7 +308,7 @@ export default function App() {
             <div className="relative group">
               <input
                 type="text"
-                placeholder="搜尋檔案名稱..."
+                placeholder="搜尋標題名稱..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full bg-white border border-slate-200 px-12 py-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold text-slate-800 shadow-sm"
@@ -456,7 +456,7 @@ export default function App() {
                       prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:rounded-2xl prose-pre:p-6
                     "
                     >
-                      <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
+                      <ReactMarkdown>{selectedPost.content.replace(/^---[\s\S]*?---/, '')}</ReactMarkdown>
                     </div>
                   </div>
 
