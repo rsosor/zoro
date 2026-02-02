@@ -66,7 +66,7 @@
 
 //   const [formData, setFormData] = useState({
 //     title: '',
-//     category: '健力日誌',
+//     category: '健力日記',
 //     content: '',
 //     imageUrl: '',
 //     isPinned: false

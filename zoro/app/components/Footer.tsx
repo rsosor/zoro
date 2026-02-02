@@ -13,7 +13,7 @@ export default function Footer() {
 
   const active = {
     url: "/zoro/imgs/active/Banner_營業員網站-1200x462.png",
-    url2: "/zoro/imgs/active/阿姆斯a.jfif",
+    url2: "/zoro/imgs/active/0105_BN_PC-1920x562.png",
   };
 
   const slides = [

@@ -103,7 +103,7 @@ const FloatingActionButton = () => {
       <div className="fixed left-0 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-4 items-start">
         {/* LINE 諮詢區塊 - 左側懸浮展開邏輯 */}
         <div className={`transition-all duration-500 transform ${showFloatingQR ? "translate-x-0" : "-translate-x-full"}`}>
-          <div className="group relative flex items-center">
+          <div className="hidden xl:flex group relative flex items-center">
             {/* 觸發圖標 (露出在邊緣的按鈕) */}
             <div className="w-12 h-12 bg-[#00B900] text-white rounded-r-xl shadow-lg flex items-center justify-center z-20 border-r-2 border-white/20 cursor-pointer">
               <Menu className="w-6 h-6" />

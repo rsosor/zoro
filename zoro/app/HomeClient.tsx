@@ -65,7 +65,7 @@ const App = () => {
     },
   ];
 
-  const tradingSystems = [
+  const advantages2 = [
     {
       name: "MultiCharts 策略對接（敬請期待）",
       detail: "專業回測與自動執行方案",
@@ -82,7 +82,7 @@ const App = () => {
       path: `/custom_app`,
     },
     { name: "Day Trade 當沖實戰心得", detail: "分享數年盯盤實戰心法", path: `/blog` },
-    { name: "健力日誌", detail: "從運動認識自己的身體", path: `/blog` },
+    { name: "健力日記", detail: "從運動認識自己的身體", path: `/blog` },
   ];
 
   return (
@@ -430,7 +430,7 @@ const App = () => {
           <div className="flex flex-col md:flex-row gap-16 items-center text-left">
             <div className="md:w-1/2 text-left">
               <h2 className="text-4xl font-black mb-4 italic text-left uppercase">
-                Systems & Tools
+                進階者之路
               </h2>
               <p className="text-green-500 font-bold mb-8 tracking-widest text-left">
                 「災難總是接踵而至，這正是世間的常態。」
@@ -440,7 +440,7 @@ const App = () => {
               </p>
 
               <div className="space-y-6 text-left">
-                {tradingSystems.map((sys, idx) => (
+                {advantages2.map((adv, idx) => (
                   <div
                     key={idx}
                     className="flex group cursor-pointer text-left"
@@ -449,12 +449,12 @@ const App = () => {
                     <div className="mr-6 text-2xl font-black text-slate-700 group-hover:text-green-500 transition-colors">
                       0{idx + 1}
                     </div>
-                    <Link href={sys.path} className="border-b border-slate-800 pb-4 w-full text-left">
+                    <Link href={adv.path} className="border-b border-slate-800 pb-4 w-full text-left">
                       <h4 className="text-xl font-bold mb-1 group-hover:text-green-400 transition-colors text-left">
-                        {sys.name}
+                        {adv.name}
                       </h4>
                       <p className="text-slate-500 text-sm text-left">
-                        {sys.detail}
+                        {adv.detail}
                       </p>
                     </Link>
                   </div>
