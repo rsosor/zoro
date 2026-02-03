@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 // import Icon from "./Icon"; // 確保路徑與你的 Navbar 相同
-import { MapPin, Phone, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, FileText, Building2, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -193,7 +193,7 @@ export default function Footer() {
             💡 提示：您可以向左右拖曳圖片來切換活動
           </p>
         </div>
-        
+
         {/* 地圖區域 - 增加下方間距 */}
         <div className="mb-20">
           <div className="relative w-full h-[350px] sm:h-[400px] lg:h-[480px] group">
@@ -214,7 +214,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 text-left">
           <div className="md:w-1/3 text-left">
-            <div className="flex items-center gap-2 mb-6">
+            {/* <div className="flex items-center gap-2 mb-6">
               <img
                 src="/zoro/imgs/kgif_logo.png"
                 alt="KGIF Logo"
@@ -223,52 +223,37 @@ export default function Footer() {
               <h3 className="text-xl font-black italic">
                 KGI <span className="text-green-600 text-left">ZORO</span>
               </h3>
-            </div>
-            <p className="text-amber-600/90 border-amber-50 font-bold mb-2 text-left border-l-4 border-amber-500 pl-3">
+            </div> */}
+            <p className="text-lg text-amber-600/90 border-amber-50 font-bold mb-2 text-left border-l-4 border-amber-500 pl-3">
               凱基期貨總公司 - 謝宗佑
             </p>
+            <div className="text-base max-w-sm rounded-lg shadow-sm">
+              {/* 聯絡資訊區塊 */}
+              <div className="space-y-1 mt-4">
+                {/* 地址 */}
+                <p className="text-amber-600/90 leading-relaxed text-left flex items-start gap-1">
+                  <span className="text-amber-500 mt-1">
+                    <MapPin size={15} strokeWidth={2} />
+                  </span>
+                  台北市中正區重慶南路一段 2 號 13 樓（台開大樓）
+                </p>
 
-            <div className="space-y-1 mt-4">
-              <p className="text-amber-600/90 border-amber-50 text-sm leading-relaxed text-left flex items-start gap-1">
-                <span className="text-amber-500 mt-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                </span>
-                台北市中正區重慶南路一段 2 號 13 樓（台開大樓）
-              </p>
-              <p className="text-amber-600/90 border-amber-50 text-sm leading-relaxed text-left flex items-center gap-1">
-                <span className="text-amber-500">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18.92z" />
-                  </svg>
-                </span>
-                電話：02-2312-7127
-              </p>
-              <p className="text-amber-600/90 text-xs font-medium mt-3 pt-2 border-t border-amber-50">
-                114 年金管期總字第 004 號
-              </p>
+                {/* 電話 */}
+                <p className="text-amber-600/90 leading-relaxed text-left flex items-center gap-1">
+                  <span className="text-amber-500">
+                    <Phone size={15} strokeWidth={2} />
+                  </span>
+                  電話：02-2312-7127
+                </p>
+
+                {/* 執照字號 */}
+                <p className="text-amber-600/90 leading-relaxed text-left flex items-center gap-1">
+                  <span className="text-amber-500">
+                    <FileText size={15} strokeWidth={2} />
+                  </span>
+                  114 年金管期總字第 004 號
+                </p>
+              </div>
             </div>
           </div>
           <div className="md:w-2/3 text-left">
@@ -281,9 +266,20 @@ export default function Footer() {
               </h4>
               <div className="text-[11px] text-slate-400 leading-relaxed space-y-2 text-left">
                 <p className="text-left">
-                  期貨交易具有低保證金之財務槓桿特性，可能產生極大損失，請投資人評估自身財務能力與經濟情況。
+                  期權交易財務槓桿高，投資人請慎重考量自身財務能力，並特別留意控管風險。
                   <br />
-                  系統可能因網路或電力中斷等因素導致延遲，交易人應自行注意。
+                  網路下單如遇不可抗力情形(如斷電、斷線、網路或系統壅塞及電腦程式交易錯誤等)時，交易可能發生無法或延遲成交，請交易人應隨時注意執行狀況並特別留意控管。
+                  <br />
+                  過去之績效並不保證未來獲利，投資人應依個人財務狀況審慎評估。
+                  <br />
+                  可交易之國外期交所商品以主管機關公告為限。
+                  <br />
+                  在市場行情劇烈變動下，撮合之價格上下變動會相當快速，投資人所委託之停損及移動停損單在被市場成交觸價時，系統可能無法立即判別執行或延遲執行。
+                  <br />
+                  本公司所提供之即時報價資訊，不代表勸誘投資人進行期貨交易，且不保證此資料之正確性及完整性。
+                  <br />
+                  交易人從事期貨交易前，應確實評估自身之交易能力(如年齡、期貨了解程度、交易經驗及資產狀況等)，以掌握交易風險。「為辦理防制洗錢及打擊資恐作業，客戶應配合凱基期貨為相關審查，且勿提供帳戶供他人使用，以避免其帳戶淪為洗錢之管道。
+                  詳情請洽本公司網站：https://www.kgif.com.tw/，或另查詢中華民國期貨業商業同業公會網站：https://www.futures.org.tw//。
                 </p>
                 <p className="font-bold text-slate-500 mt-2 text-left">
                   凱基期貨許可證照字號：114 年金管期總字第 004 號

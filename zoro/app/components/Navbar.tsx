@@ -139,7 +139,7 @@ export default function Navbar() {
         <div className="flex justify-between h-20 items-center">
           {/* Logo 區塊 */}
           <div className="flex items-center gap-3">
-            <Link href="/">
+            {/* <Link href="/">
               <img
                 src="/zoro/imgs/kgif_logo.png"
                 alt="KGIF Logo"
@@ -149,10 +149,12 @@ export default function Navbar() {
                   target.style.display = "none";
                 }}
               />
-            </Link>
+            </Link> */}
             <Link href="/" className="flex flex-col">
               <span className="text-xl font-black italic tracking-tighter leading-none">
-                <span className="text-green-600">凱基期貨營業員·謝宗佑</span>
+                <span className="text-green-600">謝宗佑</span>
+                <span className="text-green-600"> - </span>
+                <span className="text-green-600">凱基期貨</span>
               </span>
               {/* <span className="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Zoro</span> */}
             </Link>

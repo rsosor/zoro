@@ -22,6 +22,7 @@ import {
   Target,
   BookOpen,
 } from "lucide-react";
+import { apiUtils } from "../utils/apiUtils";
 
 /**
  * [索隆風格 - 實時數據版 2.0]
@@ -189,6 +190,16 @@ export default function App() {
         const response = await fetch("/zoro/data/posts.json");
         if (!response.ok) throw new Error("無法取得文章清單");
         const data = await response.json();
+
+        // 假設你把包含中文的文章標題塞進了 Cookie 或自定義 Header
+        // document.cookie = `last_viewed_title=${data[0].title}`; // 這裡會噴 ByteString 錯誤！
+        // 預先對所有路徑進行編碼，這樣 handleSelectPost 就不會拿到原始中文路徑
+        // const safeData = data.map((post) => ({
+        //   ...post,
+        //   contentPath: post.contentPath
+        //     ? encodeURI(post.contentPath)
+        //     : post.contentPath,
+        // }));
         setPosts(data);
       } catch (error) {
         console.error("資料加載失敗:", error);
@@ -204,14 +215,20 @@ export default function App() {
   // 2. 選取文章：根據路徑讀取 public/content/*.md
   const handleSelectPost = async (post) => {
     if (selectedPost && selectedPost.id === post.id) return;
-
+    console.log(post);
     // 先顯示載入中狀態
     setSelectedPost({ ...post, content: "正在從卷軸中解開封印..." });
 
     try {
+      // const safePath = encodeURI(post.contentPath);
       // 根據 posts.json 裡面的 contentPath 讀取，例如 /content/1.md
       const response = await fetch(post.contentPath);
+      // const response = await fetch(safePath);
+
       if (!response.ok) throw new Error("讀取 MD 檔案失敗");
+
+      // 在瀏覽器中，Response 的內容（body）是一個 一次性串流 (Stream)。一旦你讀取過它，不能再讀第二次。
+      // console.log(await response.text())
       const text = await response.text();
       setSelectedPost({ ...post, content: text });
     } catch (error) {
@@ -455,7 +472,9 @@ export default function App() {
                       prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:rounded-2xl prose-pre:p-6
                     "
                     >
-                      <ReactMarkdown>{selectedPost.content.replace(/^---[\s\S]*?---/, '')}</ReactMarkdown>
+                      <ReactMarkdown>
+                        {selectedPost.content.replace(/^---[\s\S]*?---/, "")}
+                      </ReactMarkdown>
                     </div>
                   </div>
 
