@@ -61,26 +61,26 @@ const App = () => {
       icon: <Cpu className="w-8 h-8 text-green-500" />,
       title: "最強大的名刀系統",
       description:
-        "從看盤軟體到 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。",
+        "從看盤軟體到凱基 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。",
     },
   ];
 
   const advantages2 = [
     {
-      name: "MultiCharts 策略對接（敬請期待）",
-      detail: "專業回測與自動執行方案",
+      name: "凱基 MultiCharts（敬請期待）",
+      detail: "專業回測功能與易上手策略開發",
       path: `/mcs`,
     },
     {
-      name: "進階 API 串接服務（敬請期待）",
+      name: "凱基 API 串接（敬請期待）",
       detail: "專為程式交易者打造，極低延遲",
       path: `/api`,
     },
-    {
-      name: "開發看盤下單系統（敬請期待）",
-      detail: "根據需要，建立屬於自己的看盤下單系統",
-      path: `/custom_app`,
-    },
+    // {
+    //   name: "開發看盤下單系統（敬請期待）",
+    //   detail: "根據需要，建立屬於自己的看盤下單系統",
+    //   path: `/custom_app`,
+    // },
     { name: "Day Trade 當沖實戰心得", detail: "分享數年盯盤實戰心法", path: `/blog` },
     { name: "健力日記", detail: "從運動認識自己的身體", path: `/blog` },
   ];
@@ -157,7 +157,7 @@ const App = () => {
                 <div className="absolute inset-0 backface-hidden">
                   <div className="absolute -inset-4 bg-green-500/20 rounded-[2rem] blur-2xl group-hover:bg-green-500/30 transition duration-500"></div>
                   <div className="relative h-full bg-[#0b121e] rounded-[2rem] border-2 border-green-500/50 overflow-hidden shadow-2xl transition duration-500 group-hover:border-green-400 group-hover:scale-[1.02]">
-                    <img
+                    {/* <img
                       src="/zoro/imgs/zoro.jpg"
                       alt="謝宗佑 個人照"
                       className="w-full h-full object-contain transition duration-500"
@@ -165,14 +165,14 @@ const App = () => {
                       onError={(e) => {
                         e.currentTarget.style.display = "none";
                       }}
-                    />
+                    /> */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b121e] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-8 text-center bg-gradient-to-t from-[#0b121e] to-transparent">
                       <span className="text-green-500 block mb-1 font-mono text-xs tracking-[0.3em]">
                         ZORO STYLE
                       </span>
                       <h2 className="text-3xl font-black tracking-widest mb-2 text-white text-center">
-                        謝宗佑
+                        OOO(姓名)
                       </h2>
                       <div className="h-1 w-10 bg-green-500 mx-auto mb-4"></div>
                       <p className="text-slate-300 text-sm font-bold text-center">
@@ -232,7 +232,7 @@ const App = () => {
                               </div>
                               <ExternalLink className="w-2.5 h-2.5 text-slate-600 opacity-0 group-hover/item:opacity-100 transition-opacity" />
                             </div>
-                            <p className="text-xs font-mono text-green-400">
+                            <p className="text-xs font-mono text-orange-400">
                               開發者開源平台
                             </p>
                           </a>
@@ -325,11 +325,11 @@ const App = () => {
                             名片（business card）
                           </h4>
                           <div className="group relative overflow-hidden rounded-xl border border-white/10">
-                            <img
+                            {/* <img
                               src="/zoro/imgs/business_card.jpg"
                               alt="Business Card"
                               className="w-full h-auto transition-transform duration-300"
-                            />
+                            /> */}
                           </div>
                         </div>
                       </div>
@@ -465,16 +465,16 @@ const App = () => {
             <div className="md:w-1/2 grid grid-cols-2 gap-6 w-full text-left">
               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
                 <BarChart3 className="text-green-500 mb-4 w-8 h-8" />
-                <h4 className="font-black text-xl text-left">MultiCharts</h4>
+                <h4 className="font-black text-xl text-left">凱基 MultiCharts</h4>
                 <p className="text-slate-400 text-sm mt-2 font-light text-left">
                   支援策略回測與自動下單對接
                 </p>
               </div>
               <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-green-500/50 transition relative overflow-hidden group text-left">
                 <Cpu className="text-green-500 mb-4 w-8 h-8" />
-                <h4 className="font-black text-xl text-left">API Trading</h4>
+                <h4 className="font-black text-xl text-left">凱基 API 串接</h4>
                 <p className="text-slate-400 text-sm mt-2 font-light text-left">
-                  極致低延遲，專屬程式交易方案
+                  適合擁有程式設計經驗者
                 </p>
               </div>
             </div>
@@ -520,7 +520,7 @@ const App = () => {
               <p className="text-slate-600 text-lg mb-8 font-light leading-relaxed">
                 想了解更多關於{" "}
                 <span className="font-bold">凱基期貨手續費優惠</span>、
-                <span className="font-bold">程式交易開發</span> 或是{" "}
+                <span className="font-bold">程式交易</span> 或是{" "}
                 <span className="font-bold">實戰心法</span> 嗎？
                 <br />
                 掃描右側 QR Code 我會親自協助您。

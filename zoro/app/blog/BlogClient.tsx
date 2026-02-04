@@ -290,9 +290,9 @@ export default function App() {
             </div>
             <h1 className="text-2xl font-black text-slate-700 tracking-tighter flex items-center gap-3">
               <Sword className="text-emerald-500 rotate-45" size={32} />
-              凱基期貨營業員
+              凱基期貨
               <span className="text-emerald-500 font-light text-2xl">/</span>
-              謝宗佑
+              OOO(姓名)
             </h1>
           </div>
 

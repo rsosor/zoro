@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-// import Icon from "./Icon"; // 確保路徑與你的 Navbar 相同
+import Link from "next/link";
 import { MapPin, Phone, FileText, Building2, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
@@ -83,7 +83,7 @@ export default function Footer() {
     <footer className="bg-slate-950 pt-20 pb-10 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 text-left">
         <div className="max-w-6xl mx-auto p-4 py-10">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800 border-l-4 border-green-600 pl-4">
+          <h2 className="text-2xl font-bold mb-6 text-amber-600/90 border-l-4 border-green-600 pl-4">
             精選活動
           </h2>
 
@@ -224,8 +224,9 @@ export default function Footer() {
                 KGI <span className="text-green-600 text-left">ZORO</span>
               </h3>
             </div> */}
+
             <p className="text-lg text-amber-600/90 border-amber-50 font-bold mb-2 text-left border-l-4 border-amber-500 pl-3">
-              凱基期貨總公司 - 謝宗佑
+              凱基期貨總公司 - OOO(姓名)
             </p>
             <div className="text-base max-w-sm rounded-lg shadow-sm">
               {/* 聯絡資訊區塊 */}
@@ -243,7 +244,8 @@ export default function Footer() {
                   <span className="text-amber-500">
                     <Phone size={15} strokeWidth={2} />
                   </span>
-                  電話：02-2312-7127
+                  電話：OOOOOOOO(公司電話)
+                  {/* 電話：02-7721-7127 */}
                 </p>
 
                 {/* 執照字號 */}
@@ -289,7 +291,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-20 pt-8 border-t border-slate-50 text-center text-slate-300 text-xs font-mono uppercase tracking-widest">
-          © 2026 KGI Futures Tsung Yu Hsieh. All Rights Reserved.
+          © 2026 design by Tsung Yu Hsieh. All Rights Reserved.
         </div>
       </div>
     </footer>

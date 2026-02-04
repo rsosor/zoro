@@ -350,7 +350,7 @@
 //   const [activeTab, setActiveTab] = useState("ALL");
 
 //   const coreAttributes = [
-//     { name: "MultiCharts", value: "98%", desc: "策略同步率", icon: <BarChart3 className="w-4 h-4" /> },
+//     { name: "凱基 MultiCharts", value: "98%", desc: "策略同步率", icon: <BarChart3 className="w-4 h-4" /> },
 //     { name: "API Trading", value: "12ms", desc: "傳輸延遲", icon: <Cpu className="w-4 h-4" /> },
 //     { name: "SBD Total", value: "400kg", desc: "力量指標", icon: <Zap className="w-4 h-4" /> }
 //   ];

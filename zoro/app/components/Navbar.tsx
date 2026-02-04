@@ -41,39 +41,39 @@ export default function Navbar() {
       text: "🔥 凱基新戶限時優惠「阿姆斯賺」：新戶交易達成即送 500 元超商禮券！",
       url: "https://event.kgi.com.tw/news/event/armstrong/index.html", // 替換為實際活動網址
     },
-    {
-      text: "📢 本週五晚上 19:00：期貨基礎進階講座（線上直播）",
-      url: "#", // 替換為講座報名連結
-    },
+    // {
+    //   text: "📢 本週五晚上 19:00：期貨基礎進階講座（線上直播）",
+    //   url: "#", // 替換為講座報名連結
+    // },
     {
       text: "⚡ 近期大盤波動劇烈，請各位投資人注意保證金水位。",
       url: null, // 若無連結則設為 null
     },
     {
-      text: "📢 開戶找凱基期貨營業員 謝宗佑，歡迎聯繫。",
+      text: "📢 開戶找凱基期貨營業員 OOO(姓名)，歡迎聯繫。",
       url: "https://lin.ee/i7koSZH",
     },
   ];
 
   const advantages = [
     {
-      name: "MultiCharts 策略對接（敬請期待）",
-      desc: "專業回測與自動執行方案",
+      name: "凱基 MultiCharts（敬請期待）",
+      desc: "專業回測功能與易上手策略開發",
       icon: <LineChart className="w-5 h-5 text-purple-500" />,
       path: "/mcs",
     },
     {
-      name: "進階 API 串接服務（敬請期待）",
+      name: "凱基 API 串接（敬請期待）",
       desc: "專為程式交易者打造，極低延遲",
       icon: <Zap className="w-5 h-5 text-yellow-500" />,
       path: "/api",
     },
-    {
-      name: "開發看盤下單系統（敬請期待）",
-      desc: "根據需要，建立屬於自己的看盤下單系統",
-      icon: <MonitorDot className="w-5 h-5 text-blue-500" />,
-      path: "/custom_app",
-    },
+    // {
+    //   name: "開發看盤下單系統（敬請期待）",
+    //   desc: "根據需要，建立屬於自己的看盤下單系統",
+    //   icon: <MonitorDot className="w-5 h-5 text-blue-500" />,
+    //   path: "/custom_app",
+    // },
     {
       name: "交易心得 & 健力日記",
       desc: "交易與健身都需要極其強大的自律...記錄並分享我的心得。",
@@ -152,7 +152,7 @@ export default function Navbar() {
             </Link> */}
             <Link href="/" className="flex flex-col">
               <span className="text-xl font-black italic tracking-tighter leading-none">
-                <span className="text-green-600">謝宗佑</span>
+                <span className="text-green-600">OOO(姓名)</span>
                 <span className="text-green-600"> - </span>
                 <span className="text-green-600">凱基期貨</span>
               </span>
@@ -242,7 +242,7 @@ export default function Navbar() {
               onClick={() => window.open(socialLinks.openLineOAUrl, "_blank")}
               className="bg-green-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-700 transition flex items-center gap-2 shadow-lg shadow-green-200"
             >
-              <MessageCircle className="w-5 h-5" /> 聯繫宗佑
+              <MessageCircle className="w-5 h-5" /> 聯繫我
             </button>
           </div>
 
