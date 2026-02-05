@@ -50,7 +50,7 @@ export default function Navbar() {
       url: null, // 若無連結則設為 null
     },
     {
-      text: "📢 開戶找凱基期貨營業員 OOO(姓名)，歡迎聯繫。",
+      text: "📢 開戶找凱基期貨營業員 謝宗佑，歡迎聯繫。",
       url: "https://lin.ee/i7koSZH",
     },
   ];
@@ -151,8 +151,8 @@ export default function Navbar() {
               />
             </Link> */}
             <Link href="/" className="flex flex-col">
-              <span className="text-xl font-black italic tracking-tighter leading-none">
-                <span className="text-green-600">OOO(姓名)</span>
+              <span className="text-[40px] text-xl font-black italic tracking-tighter leading-none">
+                <span className="text-green-600">謝宗佑</span>
                 <span className="text-green-600"> - </span>
                 <span className="text-green-600">凱基期貨</span>
               </span>

@@ -292,7 +292,7 @@ export default function App() {
               <Sword className="text-emerald-500 rotate-45" size={32} />
               凱基期貨
               <span className="text-emerald-500 font-light text-2xl">/</span>
-              OOO(姓名)
+              謝宗佑
             </h1>
           </div>
 

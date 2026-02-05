@@ -61,7 +61,7 @@ const App = () => {
       icon: <Cpu className="w-8 h-8 text-green-500" />,
       title: "最強大的名刀系統",
       description:
-        "從看盤軟體到凱基 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。",
+        "從看盤軟體使用到凱基 MultiCharts 策略研發或 API 串接自研看盤系統，為高階交易者提供最強火力支撐，助您在市場中游刃有餘。",
     },
   ];
 
@@ -157,7 +157,7 @@ const App = () => {
                 <div className="absolute inset-0 backface-hidden">
                   <div className="absolute -inset-4 bg-green-500/20 rounded-[2rem] blur-2xl group-hover:bg-green-500/30 transition duration-500"></div>
                   <div className="relative h-full bg-[#0b121e] rounded-[2rem] border-2 border-green-500/50 overflow-hidden shadow-2xl transition duration-500 group-hover:border-green-400 group-hover:scale-[1.02]">
-                    {/* <img
+                    <img
                       src="/zoro/imgs/zoro.jpg"
                       alt="謝宗佑 個人照"
                       className="w-full h-full object-contain transition duration-500"
@@ -165,14 +165,14 @@ const App = () => {
                       onError={(e) => {
                         e.currentTarget.style.display = "none";
                       }}
-                    /> */}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b121e] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-8 text-center bg-gradient-to-t from-[#0b121e] to-transparent">
                       <span className="text-green-500 block mb-1 font-mono text-xs tracking-[0.3em]">
                         ZORO STYLE
                       </span>
                       <h2 className="text-3xl font-black tracking-widest mb-2 text-white text-center">
-                        OOO(姓名)
+                        謝宗佑
                       </h2>
                       <div className="h-1 w-10 bg-green-500 mx-auto mb-4"></div>
                       <p className="text-slate-300 text-sm font-bold text-center">

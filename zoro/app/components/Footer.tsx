@@ -226,7 +226,7 @@ export default function Footer() {
             </div> */}
 
             <p className="text-lg text-amber-600/90 border-amber-50 font-bold mb-2 text-left border-l-4 border-amber-500 pl-3">
-              凱基期貨總公司 - OOO(姓名)
+              凱基期貨總公司 - 謝宗佑
             </p>
             <div className="text-base max-w-sm rounded-lg shadow-sm">
               {/* 聯絡資訊區塊 */}
@@ -244,8 +244,8 @@ export default function Footer() {
                   <span className="text-amber-500">
                     <Phone size={15} strokeWidth={2} />
                   </span>
-                  電話：OOOOOOOO(公司電話)
-                  {/* 電話：02-7721-7127 */}
+                  {/* 電話：OOOOOOOO(公司電話) */}
+                  電話：02-7721-7127
                 </p>
 
                 {/* 執照字號 */}
