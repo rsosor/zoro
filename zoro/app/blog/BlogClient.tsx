@@ -21,6 +21,8 @@ import {
   Clock,
   Target,
   BookOpen,
+  PanelLeft,
+  PanelRight,
 } from "lucide-react";
 import { apiUtils } from "../utils/apiUtils";
 
@@ -111,6 +113,8 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState("");
   const [todayDay, setTodayDay] = useState("");
   const [todayDate, setTodayDate] = useState("");
+  // 狀態：控制側邊欄位置，false 為左，true 為右
+  const [isSidebarRight, setIsSidebarRight] = useState(true);
 
   // 自動從資料庫獲取所有分類，確保沒有重複且包含 ALL
   // 自動生成的分類清單 (根據抓取到的 posts 決定)
@@ -200,6 +204,13 @@ export default function App() {
         //     ? encodeURI(post.contentPath)
         //     : post.contentPath,
         // }));
+
+        // 📝 打印文章清單訊息
+        console.group("🚀 文章清單加載成功");
+        console.log("文章總數:", data.length);
+        console.table(data); // 用表格形式顯示資料結構，非常方便看標題和日期
+        console.groupEnd();
+
         setPosts(data);
       } catch (error) {
         console.error("資料加載失敗:", error);
@@ -225,11 +236,33 @@ export default function App() {
       const response = await fetch(post.contentPath);
       // const response = await fetch(safePath);
 
-      if (!response.ok) throw new Error("讀取 MD 檔案失敗");
+      if (!response.ok) {
+        // throw new Error("讀取 MD 檔案失敗");
+        // 這裡不要用 throw，直接設定一個「友好」的內容
+        setSelectedPost({
+          ...post,
+          content: "### 這篇文章似乎已經被移除或移動了，請選擇其他文章。",
+        });
+        return; // 結束函數
+      }
 
       // 在瀏覽器中，Response 的內容（body）是一個 一次性串流 (Stream)。一旦你讀取過它，不能再讀第二次。
       // console.log(await response.text())
-      const text = await response.text();
+      let text = await response.text();
+      console.log(`text 前:${text}`);
+      text = text.replace(/^---[\s\S]*?---/, ""); // 拿掉 --- metadata ---
+      console.log(`text 後:${text}`);
+      // 📝 打印檔案內容預覽
+      console.group(`📄 文章內容獲取成功:${post.title}`);
+      const trueLength = text.replace(/[\r\n]/g, "").length;
+      console.log("t length:", trueLength);
+      console.log("length:", text.length);
+      console.log(
+        "前 50 個字:",
+        text.substring(0, 50) + `${trueLength <= 50 ? "" : "..."}`,
+      );
+      console.groupEnd();
+
       setSelectedPost({ ...post, content: text });
     } catch (error) {
       console.error("內容讀取錯誤:", error);
@@ -314,104 +347,120 @@ export default function App() {
                 </div>
               </div>
             ))}
+            {/* 版面切換按鈕 - 修正圖標名稱 */}
+            <button
+              onClick={() => setIsSidebarRight(!isSidebarRight)}
+              className="flex items-center gap-2 bg-white px-4 py-3 rounded-xl border border-slate-200 text-slate-400 hover:text-emerald-500 hover:border-emerald-200 transition-all shadow-sm active:scale-95 group"
+              title="切換側邊欄位置"
+            >
+              {isSidebarRight ? (
+                <PanelRight size={18} />
+              ) : (
+                <PanelLeft size={18} />
+              )}
+              <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">
+                {isSidebarRight ? "側欄靠右" : "側欄靠左"}
+              </span>
+            </button>
           </div>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* List Section */}
-          <div className="lg:col-span-4 space-y-6 relative z-20">
-            {/* 搜尋欄位 */}
-            <div className="relative group">
-              <input
-                type="text"
-                placeholder="搜尋標題名稱..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-white border border-slate-200 px-12 py-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold text-slate-800 shadow-sm"
-              />
-              <Search
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-emerald-500 transition-colors"
-                size={20}
-              />
-            </div>
+          {!isSidebarRight && (
+            <div className="lg:col-span-4 space-y-6 relative z-20">
+              {/* 搜尋欄位 */}
+              <div className="relative group">
+                <input
+                  type="text"
+                  placeholder="搜尋標題名稱..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full bg-white border border-slate-200 px-12 py-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold text-slate-800 shadow-sm"
+                />
+                <Search
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-emerald-500 transition-colors"
+                  size={20}
+                />
+              </div>
 
-            {/* 分類選單 - 確保 z-index 最高且點擊範圍清晰 */}
-            <div className="flex flex-wrap gap-2 py-2">
-              {categories.map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  onClick={() => setActiveTab(tab)}
-                  className={`relative z-30 px-5 py-2.5 rounded-full font-black text-xs tracking-wider transition-all border cursor-pointer select-none active:scale-90 ${
-                    activeTab === tab
-                      ? "bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-200"
-                      : "bg-white text-slate-500 border-slate-100 hover:border-slate-300 hover:bg-slate-50 shadow-sm"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2 flex items-center gap-2">
-                <BookOpen size={12} /> Repository Files
-              </h4>
-              {loading ? (
-                <div className="p-12 text-center animate-pulse text-xs font-bold text-slate-300 tracking-[0.2em]">
-                  正在讀取資料夾...
-                </div>
-              ) : (
-                filteredPosts.map((post) => (
-                  <div
-                    key={post.id}
-                    onClick={() => handleSelectPost(post)}
-                    className={`cursor-pointer group p-6 rounded-2xl border transition-all ${
-                      selectedPost?.id === post.id
-                        ? post.category === "期貨當沖交易心得"
-                          ? "bg-white border-orange-500 shadow-xl shadow-orange-100/50 scale-[1.02]"
-                          : "bg-white border-emerald-500 shadow-xl shadow-emerald-100/50 scale-[1.02]"
-                        : "bg-white/50 border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm"
+              {/* 分類選單 - 確保 z-index 最高且點擊範圍清晰 */}
+              <div className="flex flex-wrap gap-2 py-2">
+                {categories.map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={`relative z-30 px-5 py-2.5 rounded-full font-black text-xs tracking-wider transition-all border cursor-pointer select-none active:scale-90 ${
+                      activeTab === tab
+                        ? "bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-200"
+                        : "bg-white text-slate-500 border-slate-100 hover:border-slate-300 hover:bg-slate-50 shadow-sm"
                     }`}
                   >
-                    <div className="flex justify-between items-center mb-2">
-                      <span
-                        className={`text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider ${
-                          post.category === "健力日記"
-                            ? "bg-emerald-100 text-emerald-600"
-                            : "bg-orange-100 text-orange-600"
-                        }`}
-                      >
-                        {post.category}
-                      </span>
-                      <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1 italic">
-                        {post.id}.md
-                      </span>
-                    </div>
-                    <h3
-                      className={`font-black text-lg leading-tight transition-colors ${
+                    {tab}
+                  </button>
+                ))}
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2 flex items-center gap-2">
+                  <BookOpen size={12} /> Repository Files
+                </h4>
+                {loading ? (
+                  <div className="p-12 text-center animate-pulse text-xs font-bold text-slate-300 tracking-[0.2em]">
+                    正在讀取資料夾...
+                  </div>
+                ) : (
+                  filteredPosts.map((post) => (
+                    <div
+                      key={post.id}
+                      onClick={() => handleSelectPost(post)}
+                      className={`cursor-pointer group p-6 rounded-2xl border transition-all ${
                         selectedPost?.id === post.id
                           ? post.category === "期貨當沖交易心得"
-                            ? "text-orange-600"
-                            : "text-emerald-700"
-                          : "text-slate-500 group-hover:text-slate-800"
+                            ? "bg-white border-orange-500 shadow-xl shadow-orange-100/50 scale-[1.02]"
+                            : "bg-white border-emerald-500 shadow-xl shadow-emerald-100/50 scale-[1.02]"
+                          : "bg-white/50 border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm"
                       }`}
                     >
-                      {post.title}
-                    </h3>
+                      <div className="flex justify-between items-center mb-2">
+                        <span
+                          className={`text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider ${
+                            post.category === "健力日記"
+                              ? "bg-emerald-100 text-emerald-600"
+                              : "bg-orange-100 text-orange-600"
+                          }`}
+                        >
+                          {post.category}
+                        </span>
+                        <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1 italic">
+                          {post.id}.md
+                        </span>
+                      </div>
+                      <h3
+                        className={`font-black text-lg leading-tight transition-colors ${
+                          selectedPost?.id === post.id
+                            ? post.category === "期貨當沖交易心得"
+                              ? "text-orange-600"
+                              : "text-emerald-700"
+                            : "text-slate-500 group-hover:text-slate-800"
+                        }`}
+                      >
+                        {post.title}
+                      </h3>
+                    </div>
+                  ))
+                )}
+                {!loading && filteredPosts.length === 0 && (
+                  <div className="p-10 text-center border-2 border-dashed border-slate-100 rounded-2xl">
+                    <p className="text-xs font-bold text-slate-300 uppercase italic">
+                      無匹配檔案
+                    </p>
                   </div>
-                ))
-              )}
-              {!loading && filteredPosts.length === 0 && (
-                <div className="p-10 text-center border-2 border-dashed border-slate-100 rounded-2xl">
-                  <p className="text-xs font-bold text-slate-300 uppercase italic">
-                    無匹配檔案
-                  </p>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-
+          )}
           {/* Content Section */}
           <div className="lg:col-span-8 relative z-10">
             {selectedPost ? (
@@ -472,9 +521,10 @@ export default function App() {
                       prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:rounded-2xl prose-pre:p-6
                     "
                     >
-                      <ReactMarkdown>
-                        {selectedPost.content.replace(/^---[\s\S]*?---/, "")}
-                      </ReactMarkdown>
+                      {/* 加入 prose 類名，max-w-none 讓內容寬度自適應 */}
+                      <article className="prose prose-slate max-w-none">
+                        <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
+                      </article>
                     </div>
                   </div>
 
@@ -525,6 +575,101 @@ export default function App() {
               </div>
             )}
           </div>
+          {/* List Section */}
+          {isSidebarRight && (
+            <div className="lg:col-span-4 space-y-6 relative z-20">
+              {/* 搜尋欄位 */}
+              <div className="relative group">
+                <input
+                  type="text"
+                  placeholder="搜尋標題名稱..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full bg-white border border-slate-200 px-12 py-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold text-slate-800 shadow-sm"
+                />
+                <Search
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-emerald-500 transition-colors"
+                  size={20}
+                />
+              </div>
+
+              {/* 分類選單 - 確保 z-index 最高且點擊範圍清晰 */}
+              <div className="flex flex-wrap gap-2 py-2">
+                {categories.map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={`relative z-30 px-5 py-2.5 rounded-full font-black text-xs tracking-wider transition-all border cursor-pointer select-none active:scale-90 ${
+                      activeTab === tab
+                        ? "bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-200"
+                        : "bg-white text-slate-500 border-slate-100 hover:border-slate-300 hover:bg-slate-50 shadow-sm"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2 flex items-center gap-2">
+                  <BookOpen size={12} /> Repository Files
+                </h4>
+                {loading ? (
+                  <div className="p-12 text-center animate-pulse text-xs font-bold text-slate-300 tracking-[0.2em]">
+                    正在讀取資料夾...
+                  </div>
+                ) : (
+                  filteredPosts.map((post) => (
+                    <div
+                      key={post.id}
+                      onClick={() => handleSelectPost(post)}
+                      className={`cursor-pointer group p-6 rounded-2xl border transition-all ${
+                        selectedPost?.id === post.id
+                          ? post.category === "期貨當沖交易心得"
+                            ? "bg-white border-orange-500 shadow-xl shadow-orange-100/50 scale-[1.02]"
+                            : "bg-white border-emerald-500 shadow-xl shadow-emerald-100/50 scale-[1.02]"
+                          : "bg-white/50 border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm"
+                      }`}
+                    >
+                      <div className="flex justify-between items-center mb-2">
+                        <span
+                          className={`text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider ${
+                            post.category === "健力日記"
+                              ? "bg-emerald-100 text-emerald-600"
+                              : "bg-orange-100 text-orange-600"
+                          }`}
+                        >
+                          {post.category}
+                        </span>
+                        <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1 italic">
+                          {post.id}.md
+                        </span>
+                      </div>
+                      <h3
+                        className={`font-black text-lg leading-tight transition-colors ${
+                          selectedPost?.id === post.id
+                            ? post.category === "期貨當沖交易心得"
+                              ? "text-orange-600"
+                              : "text-emerald-700"
+                            : "text-slate-500 group-hover:text-slate-800"
+                        }`}
+                      >
+                        {post.title}
+                      </h3>
+                    </div>
+                  ))
+                )}
+                {!loading && filteredPosts.length === 0 && (
+                  <div className="p-10 text-center border-2 border-dashed border-slate-100 rounded-2xl">
+                    <p className="text-xs font-bold text-slate-300 uppercase italic">
+                      無匹配檔案
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>

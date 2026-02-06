@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-posts.tsx && next dev",
-    "build": "node scripts/generate-posts.tsx && next build",
-    "start": "node scripts/generate-posts.tsx && next start",
+    "build-data": "node scripts/generate-posts.tsx",
+    "dev": "npm run build-data && next dev",
+    "build": "npm run build-data && next build",
+    "start": "npm run build-data && next start",
     "lint": "eslint"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

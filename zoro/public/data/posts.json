@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "wefwfwe",
+    "title": "wefwfwe",
+    "category": "健力日記",
+    "date": "2026-02-06",
+    "contentPath": "/zoro/content/wefwfwe.txt"
+  },
+  {
+    "id": "好",
+    "title": "好",
+    "category": "健力日記",
+    "date": "2026-02-06",
+    "contentPath": "/zoro/content/好.txt"
+  },
+  {
+    "id": "測試交易心得",
+    "title": "進健身房的紀念日text2test2",
+    "category": "健力日記",
+    "date": "2023-10-18",
+    "contentPath": "/zoro/content/測試交易心得.md"
+  },
+  {
+    "id": "測試健身日記",
+    "title": "進健身房的紀念日",
+    "category": "健力日記",
+    "date": "2023-10-18",
+    "contentPath": "/zoro/content/測試健身日記.md"
+  }
+]
