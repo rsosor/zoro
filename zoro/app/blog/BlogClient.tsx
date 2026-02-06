@@ -523,7 +523,16 @@ export default function App() {
                     >
                       {/* 加入 prose 類名，max-w-none 讓內容寬度自適應 */}
                       <article className="prose prose-slate max-w-none">
-                        <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
+                        {/* <ReactMarkdown
+                          urlTransform={(uri) => {
+                            if (uri.startsWith("http")) return uri;
+                            const baseUrl = process.env.REACT_APP_PUBLIC_URL; // 這會自動抓到 /zoro/
+                            return `${baseUrl}/${uri}`.replace(/\/+/g, "/");
+                          }}
+                        > */}
+                        <ReactMarkdown>
+                          {selectedPost.content}
+                        </ReactMarkdown>
                       </article>
                     </div>
                   </div>
